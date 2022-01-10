@@ -17,6 +17,6 @@ I mainly go with Java and Go. Please go to the folder [leetcode](https://github.
 ## COMPSCI611 Advanced Algorithm
 Please go to the folder for details.
 ## Contact
-Thank you so much for your interests. Note that this project can not straightforward be your course assignment solution. Do not download and submit my code without any change. Contact me and I am happy to learn algorithms with you!~
+Thank you so much for your interests. Note that this project can not straightforward be your course assignment solution. Do not download and submit my code without any change. Contact me and I am happy to learn algorithms with you guys! ~
 * Email: maoqinzhu@umass.edu
 * LinkedIn: [Max Zhu](https://www.linkedin.com/in/maoqin-zhu/)
