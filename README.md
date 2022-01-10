@@ -13,7 +13,7 @@ Since in 2021 I had an internship as a Java Software Develop Engineer in Shangha
 ## COMPSCI611 Advanced Algorithm
 COMPSCI611 Advanced Algorithm is one of my graduate computer science courses at UMass Amherst. Since problems in this graduat-level course are more challenging, here we focus on the analysis, the main idea behind the algorithms and the correctness proof, rather than the code implementation.
 
-COMPSCI611 Advanced Algorithm是我在UMass Amherst所修的计算机学院研究生课程。该课程内许多问题不需要我们用代码去实现，而是更关注算法背后的思想、给出算法分析以及正确性的证明过程。
+COMPSCI611 Advanced Algorithm是我在UMass Amherst所修的计算机学院研究生课程。该课程内许多问题不需要我们用代码去实现，而是更关注算法背后的思想、给出算法分析以及正确性的数学证明过程。
 ## Contact
 Thank you so much for your interests. Note that this project can not straightforward be your course assignment solution. Do not download and submit my code without any change. Contact me and I am happy to learn algorithms with you and from you guys! ~
 * Email: maoqinzhu@umass.edu
