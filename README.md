@@ -7,9 +7,9 @@ This repository includes my annotated LeetCode solution and some interesting gra
 ## 💻 LeetCode Solution
 I mainly go with Java and Go. Please go to the folder [leetcode](https://github.com/MaxyZhu75/Algorithm-Summary/tree/main/leetcode) for details.
 
-Since in 2021 I had an internship as a Java Software Develop Engineer in Shanghai, Java is actually preferable to me when coding the solution. Nevertheless, I would say I am able to code with other programming languages too, such as Python, C++, etc. What's interesting is that recently I am learning and super into another coding language Golang. Hence, for each problem, a "Go" version code will be provided too. I will give the weekly update on my Github page. I believe these days coding in my cubicle would be one of the best recollections in my life. 😄 
+Since in 2021 I had an internship as a Java Software Develop Engineer in Shanghai, Java is actually preferable to me when coding the solution. Nevertheless, I would say I am able to code with other programming languages too, such as Python, C++, etc. What's interesting is that recently I am learning and super into another coding language Golang. Hence, for each problem, a "Go" version code will be provided too. I will give the weekly update on my Github page. I believe these days coding in my cubicle would be one of the best recollections in my life. 🤓 
 
-因为我在2021年实习时工作中用的是Java，所以平常刷题用Java把算法思路实现也更为熟悉，不过自己也是可以用Python、C++等语言写答案的。而最近我对Go语言非常感兴趣，因此在每次刷题时都会写一个Go版本的答案来进行学习。之后我会在这里每周更新自己写的力扣答案，我相信最后会成为一段很棒的回忆。😄
+因为我在2021年实习时工作中用的是Java，所以平常刷题用Java把算法思路实现也更为熟悉，不过自己也是可以用Python、C++等语言写答案的。而最近我对Go语言非常感兴趣，因此在每次刷题时都会写一个Go版本的答案来进行学习。之后我会在这里每周更新自己写的力扣答案，我相信最后会成为一段很棒的回忆。🤓
 ## 📚 COMPSCI611 Advanced Algorithm
 Please go to the folder [advanced algorithm](https://github.com/MaxyZhu75/Algorithm-Summary/tree/main/advanced%20algorithm) for details.
 
