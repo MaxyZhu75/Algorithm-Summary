@@ -1,18 +1,18 @@
 class Solution {
-    public int findTargetSumWays(int[] nums, int target) { // ÄÑµã£º½«¸ÃÎÊÌâ×ª»¯ÎªSubsetSumÎÊÌâ£¡£¡£¡
-        int numsSum = sum(nums); // ¸ÃÊı×é½«±»»®·ÖÎªÕıÊı×é¸ºÊı×éÁ½²¿·Ö¼Ç×÷PºÍN£¬ÓÉÓÚÊı×é±¾ÉíÔªËØ½ÔÎª·Ç¸ºÊı£¬Ôò¿ÉÍÆµ¼ P-N=target£»¼´ P-(numsSum-P)=target£»¼´ P=(target+numsSum)/2£¡£¡£¡
-        if (numsSum < Math.abs(target) || (numsSum + target) % 2 == 1) { // case1£º×¢Òâtarget¿ÉÄÜÎª¸º£¡£¡£¡
-            return 0; 													 // case2£ºSubsetSumÄ¿±êºÍÃ÷ÏÔĞèÒªÊÇÕûÊı£¡£¡£¡
+    public int findTargetSumWays(int[] nums, int target) { // éš¾ç‚¹ï¼šå°†è¯¥é—®é¢˜è½¬åŒ–ä¸ºSubsetSumé—®é¢˜ï¼ï¼ï¼
+        int numsSum = sum(nums); // è¯¥æ•°ç»„å°†è¢«åˆ’åˆ†ä¸ºæ­£æ•°ç»„è´Ÿæ•°ç»„ä¸¤éƒ¨åˆ†è®°ä½œPå’ŒNï¼Œç”±äºæ•°ç»„æœ¬èº«å…ƒç´ çš†ä¸ºéè´Ÿæ•°ï¼Œåˆ™å¯æ¨å¯¼ P-N=targetï¼›å³ P-(numsSum-P)=targetï¼›å³ P=(target+numsSum)/2ï¼ï¼ï¼
+        if (numsSum < Math.abs(target) || (numsSum + target) % 2 == 1) { // case1ï¼šæ³¨æ„targetå¯èƒ½ä¸ºè´Ÿï¼ï¼ï¼
+            return 0; // case2ï¼šSubsetSumç›®æ ‡å’Œæ˜æ˜¾éœ€è¦æ˜¯æ•´æ•°ï¼ï¼ï¼
         }
         int M = (numsSum + target) / 2;
 
         int[] d = new int[M+1];
-        d[0] = 1; // basecase£¡£¡£¡
+        d[0] = 1; // basecaseï¼ï¼ï¼
         for (int num : nums) {
             for (int j=M; j>=0; j--) {
-                if (j >= num) { // dp·½³ÌÀàËÆÓ²±ÒÕÒÁãÎÊÌâ£¬¶¼ÊÇÍ³¼Æ¶àÉÙÖÖ·½·¨£¡£¡£¡
-                    d[j] = d[j] + d[j-num]; // case1: d[i][j] = d[i-1][j] + d[i-1][j-num]£¡£¡£¡
-                }							// case2: d[i][j] = d[i-1][j]£¡£¡£¡
+                if (j >= num) { // dpæ–¹ç¨‹ç±»ä¼¼ç¡¬å¸æ‰¾é›¶é—®é¢˜ï¼Œéƒ½æ˜¯ç»Ÿè®¡å¤šå°‘ç§æ–¹æ³•ï¼ï¼ï¼
+                    d[j] = d[j] + d[j-num]; // case1: d[i][j] = d[i-1][j] + d[i-1][j-num]ï¼ï¼ï¼
+                } // case2: d[i][j] = d[i-1][j]ï¼ï¼ï¼
             }
         }
         return d[M];
