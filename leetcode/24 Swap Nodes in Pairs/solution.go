@@ -10,13 +10,13 @@ func swapPairs(head *ListNode) *ListNode {
         return head
     }
 
-	// ¶¨ÒåÖ¸Õë£¡£¡£¡
+    // å®šä¹‰æŒ‡é’ˆï¼ï¼ï¼
     p1, p2 := head, head.Next
     nextNode := p2.Next
-	// °´ÌØ¶¨Ë³ĞòĞŞ¸ÄÖ¸ÕëÖ¸Ïò£¡£¡£¡
+    // æŒ‰ç‰¹å®šé¡ºåºä¿®æ”¹æŒ‡é’ˆæŒ‡å‘ï¼ï¼ï¼
     p2.Next = p1
-    newHead := p2 // ×¢ÒâÓ¦Ô­À´µÄÍ·½áµãÒÑ±»½»»»µ½µÚ¶şÎ»ÖÃ£¬Ó¦¸ÃĞÂ½¨newHeadÖ¸Õë²¢×÷Îª·µ»Ø½á¹û£¡£¡£¡
-    p1.Next = swapPairs(nextNode) // recursion£¡£¡£¡
+    newHead := p2 // æ³¨æ„åº”åŸæ¥çš„å¤´ç»“ç‚¹å·²è¢«äº¤æ¢åˆ°ç¬¬äºŒä½ç½®ï¼Œåº”è¯¥æ–°å»ºnewHeadæŒ‡é’ˆå¹¶ä½œä¸ºè¿”å›ç»“æœï¼ï¼ï¼
+    p1.Next = swapPairs(nextNode) // recursionï¼ï¼ï¼
 
     return newHead
 }
