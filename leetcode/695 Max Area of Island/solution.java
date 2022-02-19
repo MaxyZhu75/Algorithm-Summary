@@ -1,14 +1,14 @@
 class Solution {
-	int[][] grid;
-	int m, n;
-	int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // ·½Ïò¼¯ºÏ·ÅÔÚ·½·¨ÍâÃæËÙ¶È»á¿ìºÜ¶à£¡£¡£¡
+    int[][] grid;
+    int m, n;
+    int[][] directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // æ–¹å‘é›†åˆæ”¾åœ¨æ–¹æ³•å¤–é¢é€Ÿåº¦ä¼šå¿«å¾ˆå¤šï¼ï¼ï¼
 	
-    public int maxAreaOfIsland(int[][] grid) { // ¾­µäDFSÌâÄ¿£¬³£ÓÃÀ´½â³õÊ¼½áµã¿É´ïĞÔÎÊÌâ£»¸ÃÌâĞèÒªÕÒ³ö¸÷½Úµã×î´óµÄ¿É´ï½ÚµãÊıÁ¿£¡£¡£¡
+    public int maxAreaOfIsland(int[][] grid) { // ç»å…¸DFSé¢˜ç›®ï¼Œå¸¸ç”¨æ¥è§£åˆå§‹ç»“ç‚¹å¯è¾¾æ€§é—®é¢˜ï¼›è¯¥é¢˜éœ€è¦æ‰¾å‡ºå„èŠ‚ç‚¹æœ€å¤§çš„å¯è¾¾èŠ‚ç‚¹æ•°é‡ï¼ï¼ï¼
         this.grid = grid;
 	m = grid.length;
         n = grid[0].length;
         int maxArea = 0;
-        for (int i=0; i<m; i++) { // ±éÀúÃ¿¸ö½Úµã£¬ÓÉdfsÌ½²â¿É´ïĞÔÊ±¼ÇÂ¼¿É´ï½ÚµãµÄÊıÁ¿£¡£¡£¡
+        for (int i=0; i<m; i++) { // éå†æ¯ä¸ªèŠ‚ç‚¹ï¼Œç”±dfsæ¢æµ‹å¯è¾¾æ€§æ—¶è®°å½•å¯è¾¾èŠ‚ç‚¹çš„æ•°é‡ï¼ï¼ï¼
             for (int j=0; j<n; j++) {
                 maxArea = Math.max(maxArea, dfs(i, j)); 
             }
@@ -16,7 +16,7 @@ class Solution {
         return maxArea;
     }
 
-    public int dfs(int row, int colum) { // ÒªµãÒ»£ºDFSĞèÒªÕ»ÊµÏÖ£¬µİ¹é¼´ÊÇÒ»ÖÖÕ»µÄÔËÓÃ£¬¹Êµ¥¶ÀĞ´³öÒ»¸ödfsµİ¹é·½·¨£¡£¡£¡        
+    public int dfs(int row, int colum) { // è¦ç‚¹ä¸€ï¼šDFSéœ€è¦æ ˆå®ç°ï¼Œé€’å½’å³æ˜¯ä¸€ç§æ ˆçš„è¿ç”¨ï¼Œæ•…å•ç‹¬å†™å‡ºä¸€ä¸ªdfsé€’å½’æ–¹æ³•ï¼ï¼ï¼        
         if (row < 0 || row >= m || colum < 0 || colum >= n) {
             return 0;
         }
@@ -25,10 +25,10 @@ class Solution {
             return 0;
         }
         
-        grid[row][colum] = 0; // Òªµã¶ş£ºÂ·¹ıÖ®´¦ĞèÒª±ê¼Ç£¡£¡£¡
+        grid[row][colum] = 0; // è¦ç‚¹äºŒï¼šè·¯è¿‡ä¹‹å¤„éœ€è¦æ ‡è®°ï¼ï¼ï¼
         
         int nodesNum = 1;
-        for (int[] direction : directions) { // ÒªµãÈı£ºµİ¹é¼ÆËã²»Í¬·½ÏòµÄ¿É´ïĞÔ£»×¢ÒâÓÉÓÚÊÇµİ¹é£¬Ã¿¸ö·½Ïò»á×ßµ½¾¡Í·²Å»áµ½ÏÂ¸öÑ­»·´¦ÀíÁíÒ»¸ö·½Ïò£¡£¡£¡
+        for (int[] direction : directions) { // è¦ç‚¹ä¸‰ï¼šé€’å½’è®¡ç®—ä¸åŒæ–¹å‘çš„å¯è¾¾æ€§ï¼›æ³¨æ„ç”±äºæ˜¯é€’å½’ï¼Œæ¯ä¸ªæ–¹å‘ä¼šèµ°åˆ°å°½å¤´æ‰ä¼šåˆ°ä¸‹ä¸ªå¾ªç¯å¤„ç†å¦ä¸€ä¸ªæ–¹å‘ï¼ï¼ï¼
             int nextRow = row + direction[0];
             int nextColum = colum + direction[1];
             nodesNum += dfs(nextRow, nextColum); 
