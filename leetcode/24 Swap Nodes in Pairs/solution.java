@@ -14,14 +14,14 @@ class Solution {
             return head;
         }
 		
-		// ¶¨ÒåÖ¸Õë£¡£¡£¡
+	// å®šä¹‰æŒ‡é’ˆï¼ï¼ï¼
         ListNode p1 = head;
         ListNode p2 = head.next;
         ListNode nextNode = p2.next;
-		// °´ÌØ¶¨Ë³ĞòĞŞ¸ÄÖ¸ÕëÖ¸Ïò£¡£¡£¡
+	// æŒ‰ç‰¹å®šé¡ºåºä¿®æ”¹æŒ‡é’ˆæŒ‡å‘ï¼ï¼ï¼
         p2.next = p1;
-        ListNode newHead = p2; // ×¢ÒâÓ¦Ô­À´µÄÍ·½áµãÒÑ±»½»»»µ½µÚ¶şÎ»ÖÃ£¬Ó¦¸ÃĞÂ½¨newHeadÖ¸Õë²¢×÷Îª·µ»Ø½á¹û£¡£¡£¡
-        p1.next = swapPairs(nextNode); // recursion£¡£¡£¡
+        ListNode newHead = p2; // æ³¨æ„åº”åŸæ¥çš„å¤´ç»“ç‚¹å·²è¢«äº¤æ¢åˆ°ç¬¬äºŒä½ç½®ï¼Œåº”è¯¥æ–°å»ºnewHeadæŒ‡é’ˆå¹¶ä½œä¸ºè¿”å›ç»“æœï¼ï¼ï¼
+        p1.next = swapPairs(nextNode); // recursionï¼ï¼ï¼
 
         return newHead;
     }
