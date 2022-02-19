@@ -9,33 +9,33 @@
  * }
  */
 class Solution {
-    public boolean isPalindrome(ListNode head) { // ½«Á´±í·Ö¸îÎªÁ½²¿·Ö£¬½«ºó°ë²¿·Ö·´×ªÓëÇ°°ë²¿·Ö±È½Ï¼´¿É£¡£¡£¡
+    public boolean isPalindrome(ListNode head) { // å°†é“¾è¡¨åˆ†å‰²ä¸ºä¸¤éƒ¨åˆ†ï¼Œå°†ååŠéƒ¨åˆ†åè½¬ä¸å‰åŠéƒ¨åˆ†æ¯”è¾ƒå³å¯ï¼ï¼ï¼
         if (head == null || head.next == null) {
             return true;
         }
         
-        ListNode slow = head; // ÒªµãÒ»£º»ùÓÚ¿ìÂıÖ¸ÕëË¼ÏëÀ´È·¶¨Á´±íµÄÖĞ¼äÎ»ÖÃ£»´Ë´¦ĞèÒª×¢Òâ¿ìÂıÖ¸ÕëµÄÆğµã£¡£¡£¡
+        ListNode slow = head; // è¦ç‚¹ä¸€ï¼šåŸºäºå¿«æ…¢æŒ‡é’ˆæ€æƒ³æ¥ç¡®å®šé“¾è¡¨çš„ä¸­é—´ä½ç½®ï¼›æ­¤å¤„éœ€è¦æ³¨æ„å¿«æ…¢æŒ‡é’ˆçš„èµ·ç‚¹ï¼ï¼ï¼
         ListNode fast = head.next;
-        while (fast != null && fast.next != null) { // ×¢Òâ²»ÄÜÄÃfast.next.next×÷ÅĞ¶ÏÌõ¼ş£¬»á·¢Éú¿ÕÖ¸ÕëÒì³££¡£¡£¡
+        while (fast != null && fast.next != null) { // æ³¨æ„ä¸èƒ½æ‹¿fast.next.nextä½œåˆ¤æ–­æ¡ä»¶ï¼Œä¼šå‘ç”Ÿç©ºæŒ‡é’ˆå¼‚å¸¸ï¼ï¼ï¼
             slow = slow.next;
             fast = fast.next.next;
         }
         
-        ListNode secondHead = slow.next; // Òªµã¶ş£º½áºÏÊµÀı¿ÉÖªÎŞÂÛÔ­Á´±íº¬ÆæÊı¸ö½Úµã»¹ÊÇÅ¼Êı¸ö½Úµã£¬·Ö¸îÁ´±íÊ±ºó°ë²¿·ÖµÄÍ·½áµã×ÜÎªÂıÖ¸ÕëËùÖ¸µÄÏÂÒ»¸ö½Úµã£¡£¡£¡
-        ListNode endFlag = fast == null ? slow : slow.next; // ÒªµãÈı£ºÓÉfastÖ¸ÕëÎ»ÖÃÅĞ¶ÏÔ­Á´±í½ÚµãÊıµÄÆæÅ¼£»endFlagÊÇÎªÁË½øÒ»²½È·¶¨·Ö¸îµÄÎ»ÖÃ£»ÆæÊı¸ö½ÚµãÊ±ÕıÖĞ¼äµÄ½Úµã¼È²»ÔÚÇ°°ë²¿·Ö£¬Ò²²»ÔÚºó°ë²¿·Ö£¡£¡£¡
+        ListNode secondHead = slow.next; // è¦ç‚¹äºŒï¼šç»“åˆå®ä¾‹å¯çŸ¥æ— è®ºåŸé“¾è¡¨å«å¥‡æ•°ä¸ªèŠ‚ç‚¹è¿˜æ˜¯å¶æ•°ä¸ªèŠ‚ç‚¹ï¼Œåˆ†å‰²é“¾è¡¨æ—¶ååŠéƒ¨åˆ†çš„å¤´ç»“ç‚¹æ€»ä¸ºæ…¢æŒ‡é’ˆæ‰€æŒ‡çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼ï¼ï¼
+        ListNode endFlag = fast == null ? slow : slow.next; // è¦ç‚¹ä¸‰ï¼šç”±fastæŒ‡é’ˆä½ç½®åˆ¤æ–­åŸé“¾è¡¨èŠ‚ç‚¹æ•°çš„å¥‡å¶ï¼›endFlagæ˜¯ä¸ºäº†è¿›ä¸€æ­¥ç¡®å®šåˆ†å‰²çš„ä½ç½®ï¼›å¥‡æ•°ä¸ªèŠ‚ç‚¹æ—¶æ­£ä¸­é—´çš„èŠ‚ç‚¹æ—¢ä¸åœ¨å‰åŠéƒ¨åˆ†ï¼Œä¹Ÿä¸åœ¨ååŠéƒ¨åˆ†ï¼ï¼ï¼
         
-		cutLinkedList(head, endFlag);
+	cutLinkedList(head, endFlag);
         return isEqual(head,reverse(secondHead));
     }
 
-    public void cutLinkedList(ListNode head, ListNode endFlag) { // ×Ô¶¨ÒåµÄ·Ö¸î·½·¨£¬·¢ÏÖÏÂÒ»¸öÊÇendFlagÔòÌø³öÑ­»·Ö¸Ïònull£¡£¡£¡
+    public void cutLinkedList(ListNode head, ListNode endFlag) { // è‡ªå®šä¹‰çš„åˆ†å‰²æ–¹æ³•ï¼Œå‘ç°ä¸‹ä¸€ä¸ªæ˜¯endFlagåˆ™è·³å‡ºå¾ªç¯æŒ‡å‘nullï¼ï¼ï¼
         while (head.next != endFlag) {
             head = head.next;
         }
         head.next = null;
     }
 
-    public ListNode reverse(ListNode head) { // Í·²å·¨£¬¸Ã·½·¨µÄ½âÊÍ¼ûLeetCodeµÄ206Ìâ£¡£¡£¡
+    public ListNode reverse(ListNode head) { // å¤´æ’æ³•ï¼Œè¯¥æ–¹æ³•çš„è§£é‡Šè§LeetCodeçš„206é¢˜ï¼ï¼ï¼
         if (head == null || head.next == null) {
             return head;
         }
@@ -50,7 +50,7 @@ class Solution {
         return previous;
     }
 
-    public boolean isEqual(ListNode firstHead, ListNode secondHead) { // ÅĞ¶ÏÁ½¸öÁ´±íÊÇ·ñÏàµÈ£¡£¡£¡
+    public boolean isEqual(ListNode firstHead, ListNode secondHead) { // åˆ¤æ–­ä¸¤ä¸ªé“¾è¡¨æ˜¯å¦ç›¸ç­‰ï¼ï¼ï¼
         while (firstHead != null && secondHead!= null) {
             if (firstHead.val != secondHead.val) {
                 return false;
