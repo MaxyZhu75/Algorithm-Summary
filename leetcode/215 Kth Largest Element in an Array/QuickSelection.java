@@ -1,35 +1,35 @@
 class Solution {
-    public int findKthLargest(int[] nums, int k) { // ¿ìÅÅÖĞµÄº¯Êıpartition()·Ç³£ÊµÓÃ£¡£¡£¡
+    public int findKthLargest(int[] nums, int k) { // å¿«æ’ä¸­çš„å‡½æ•°partition()éå¸¸å®ç”¨ï¼ï¼ï¼
         int left = 0;
         int right = nums.length - 1;
         while (true) {
-            int index = partition(nums, left, right); // ·µ»ØÖµÎªµ±Ç°Ñ­»·ËùÑ¡pivot¾­¹ıpartition()ºóËùÔÚµÄË÷ÒıÎ»ÖÃindex£¬Æäº¬ÒåÏàµ±ÓÚÊı×éÄÚº¬ÓĞindex¸ö±ÈpivotÖµĞ¡µÄÔªËØ£¬ÇÒÒÑ¾­±»·ÅÖÃµ½pivotµÄ×ó±ß£¡£¡£¡
+            int index = partition(nums, left, right); // è¿”å›å€¼ä¸ºå½“å‰å¾ªç¯æ‰€é€‰pivotç»è¿‡partition()åæ‰€åœ¨çš„ç´¢å¼•ä½ç½®indexï¼Œå…¶å«ä¹‰ç›¸å½“äºæ•°ç»„å†…å«æœ‰indexä¸ªæ¯”pivotå€¼å°çš„å…ƒç´ ï¼Œä¸”å·²ç»è¢«æ”¾ç½®åˆ°pivotçš„å·¦è¾¹ï¼ï¼ï¼
             if (nums.length - index > k) {
-                left = index + 1; // case1£º±Èµ±Ç°Ñ­»·ËùÑ¡pivot´óµÄÔªËØ¶àÓÚk-1¸ö£¬ÓÉÓÚpartition()ÒÑ¾­½«¸ü´óÔªËØ·ÅÖÃÔÚpivotÓÒ±ß£¬µÚk´óµÄÔªËØ´ËÊ±¿Ï¶¨ÔÚpivotÓÒ±ß£¬µ÷Õû×ó±ß½ç£¡£¡£¡
+                left = index + 1; // case1ï¼šæ¯”å½“å‰å¾ªç¯æ‰€é€‰pivotå¤§çš„å…ƒç´ å¤šäºk-1ä¸ªï¼Œç”±äºpartition()å·²ç»å°†æ›´å¤§å…ƒç´ æ”¾ç½®åœ¨pivotå³è¾¹ï¼Œç¬¬kå¤§çš„å…ƒç´ æ­¤æ—¶è‚¯å®šåœ¨pivotå³è¾¹ï¼Œè°ƒæ•´å·¦è¾¹ç•Œï¼ï¼ï¼
             } else if (nums.length - index < k) {
-                right = index - 1; // case2£º±Èµ±Ç°Ñ­»·ËùÑ¡pivot´óµÄÔªËØÉÙÓÚk-1¸ö£¬ÓÉÓÚpartition()ÒÑ¾­½«¸üĞ¡ÔªËØ·ÅÖÃÔÚpivot×ó±ß£¬µÚk´óµÄÔªËØ´ËÊ±¿Ï¶¨ÔÚpivot×ó±ß£¬µ÷ÕûÓÒ±ß½ç£¡£¡£¡
+                right = index - 1; // case2ï¼šæ¯”å½“å‰å¾ªç¯æ‰€é€‰pivotå¤§çš„å…ƒç´ å°‘äºk-1ä¸ªï¼Œç”±äºpartition()å·²ç»å°†æ›´å°å…ƒç´ æ”¾ç½®åœ¨pivotå·¦è¾¹ï¼Œç¬¬kå¤§çš„å…ƒç´ æ­¤æ—¶è‚¯å®šåœ¨pivotå·¦è¾¹ï¼Œè°ƒæ•´å³è¾¹ç•Œï¼ï¼ï¼
             } else {
-                return nums[index]; // case3£º±Èµ±Ç°Ñ­»·ËùÑ¡pivot´óµÄÔªËØµÈÓÚk-1¸ö£¬µ±Ç°pivot¼´ÎªµÚk´óµÄÖµ£¡£¡£¡
+                return nums[index]; // case3ï¼šæ¯”å½“å‰å¾ªç¯æ‰€é€‰pivotå¤§çš„å…ƒç´ ç­‰äºk-1ä¸ªï¼Œå½“å‰pivotå³ä¸ºç¬¬kå¤§çš„å€¼ï¼ï¼ï¼
             }
         }
     }
 
-    private static Random random = new Random(System.currentTimeMillis()); // java.util.Random ÒÔ¼° java.util.Dateµ¼°ü£»°ïÖúÉú³ÉËæ»úpivot¼õÉÙÔËĞĞÊ±¼ä£¡£¡£¡
+    private static Random random = new Random(System.currentTimeMillis()); // java.util.Random ä»¥åŠ java.util.Dateå¯¼åŒ…ï¼›å¸®åŠ©ç”Ÿæˆéšæœºpivotå‡å°‘è¿è¡Œæ—¶é—´ï¼ï¼ï¼
 
     private int partition(int[] nums, int left, int right) {
         if (right > left) {
-            int randomIndex = left + 1 + random.nextInt(right-left); // random.nextInt(right-left)¼´Éú³É½éÓÚ[0, right-left]Ëæ»úÕûÊı£¡£¡£¡
-            swap(nums, left, randomIndex); // ½«Ëæ»úÑ¡È¡µÄpivotÒÆ¶¯µ½×îÇ°Ãæ£¡£¡£¡
+            int randomIndex = left + 1 + random.nextInt(right-left); // random.nextInt(right-left)å³ç”Ÿæˆä»‹äº[0, right-left)éšæœºæ•´æ•°ï¼ï¼ï¼
+            swap(nums, left, randomIndex); // å°†éšæœºé€‰å–çš„pivotç§»åŠ¨åˆ°æœ€å‰é¢ï¼ï¼ï¼
         }
         int pivot = nums[left];
-        int j = left; // ¼ÇÂ¼pivotµÄºÏÀíË÷ÒıÎ»ÖÃ£¬µ«ÔÚÑ­»·ÄÚ²¢Î´ÕæÕı½»»»pivot£¡£¡£¡
+        int j = left; // è®°å½•pivotçš„åˆç†ç´¢å¼•ä½ç½®ï¼Œä½†åœ¨å¾ªç¯å†…å¹¶æœªçœŸæ­£äº¤æ¢pivotï¼ï¼ï¼
         for (int i = left+1; i<=right; i++) {
             if (nums[i] < pivot) {
-                j++; // ¼ÇÂ¼pivotµÄºÏÀíË÷ÒıÎ»ÖÃ£¬¼´Í³¼Æµ±Ç°±ÈpivotĞ¡µÄÔªËØ¸öÊı£¡£¡£¡
+                j++; // è®°å½•pivotçš„åˆç†ç´¢å¼•ä½ç½®ï¼Œå³ç»Ÿè®¡å½“å‰æ¯”pivotå°çš„å…ƒç´ ä¸ªæ•°ï¼ï¼ï¼
                 swap(nums, j, i);
             }
         }
-        swap(nums, left, j); // Ñ­»·½áÊøºó£¬´Ë´¦ÔÙ½«pivot½»»»ÖÁÕıÈ·Î»ÖÃ£¡£¡£¡
+        swap(nums, left, j); // å¾ªç¯ç»“æŸåï¼Œæ­¤å¤„å†å°†pivotäº¤æ¢è‡³æ­£ç¡®ä½ç½®ï¼ï¼ï¼
         return j;
     }
 
