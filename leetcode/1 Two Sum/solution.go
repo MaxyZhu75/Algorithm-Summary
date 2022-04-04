@@ -1,16 +1,16 @@
 func twoSum(nums []int, target int) []int {
     var n int = len(nums)
-    hashRecord := make(map[int]int) // Ğ´´úÂëÊ±×¢Òâ´´½¨mapµÄ·½Ê½Óë´´½¨arrayÇø±ğ£¡£¡£¡
+    hashRecord := make(map[int]int) // å†™ä»£ç æ—¶æ³¨æ„åˆ›å»ºmapçš„æ–¹å¼ä¸åˆ›å»ºarrayåŒºåˆ«ï¼ï¼ï¼
     result := make([]int, 2)
     for i:=0; i<n; i++ {
         var checkNum int = target - nums[i]
-        index1, ok := hashRecord [checkNum] // ¼Ç×¡ÕâÖÖ´úÂë·½Ê½£»okËù·µ»ØµÄÖµÏàµ±ÓÚHashMap.containsKey£»Èô¸Ãkey´æÔÚÔòµÚÒ»¸ö±äÁ¿·µ»ØÆävalue£¡£¡£¡ 
+        index1, ok := hashRecord[checkNum] // è®°ä½è¿™ç§ä»£ç æ–¹å¼ï¼›okæ‰€è¿”å›çš„å€¼ç›¸å½“äºHashMap.containsKeyï¼›è‹¥è¯¥keyå­˜åœ¨åˆ™ç¬¬ä¸€ä¸ªå˜é‡è¿”å›å…¶valueï¼ï¼ï¼ 
         if ok {
             result[0] = i
             result[1] = index1
             return result
         } else {
-            hashRecord[nums[i]] = i // mapÖĞ²»´æÔÚnums[i]µÄkeyÊ±£¬½«¸ÃÊı¼°ÆäË÷Òı´æÈëmap£¡£¡£¡
+            hashRecord[nums[i]] = i // mapä¸­ä¸å­˜åœ¨nums[i]çš„keyæ—¶ï¼Œå°†è¯¥æ•°åŠå…¶ç´¢å¼•å­˜å…¥mapï¼ï¼ï¼
         }
     }
     return result
