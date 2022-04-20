@@ -9,20 +9,20 @@ func threeSum(nums []int) [][]int { // 类似题目为四数之和！！！
 
     for p1:=0; p1<n-2; p1++ {
         if p1 > 0 && nums[p1] == nums[p1-1] { // 记住三个剪枝操作，加强代码效率！！！
-            continue;
+            continue
         }
         if nums[p1] + nums[p1+1] + nums[p1+2] > 0 {
-            break;
+            break
         }
         if nums[p1] + nums[n-1] + nums[n-2] < 0 {
-            continue;
+            continue
         }
 		
         left, right := p1+1, n-1 // 当前p1固定，对left和right写while循环的双指针！！！
         for left < right {
             sum := nums[p1] + nums[left] + nums[right];
             if sum == 0 {
-                result = append(result, []int{nums[p1], nums[left], nums[right]}); // append一个数组！！！
+                result = append(result, []int{nums[p1], nums[left], nums[right]}) // append一个数组！！！
                 for left < right && nums[left] == nums[left+1] {
                     left++
                 }
