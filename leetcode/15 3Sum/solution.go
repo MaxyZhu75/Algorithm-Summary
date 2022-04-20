@@ -1,35 +1,48 @@
-func threeSum(nums []int) [][]int { // Java答案与Go答案的变量定义有区别，因为定义一样时LeetCode上会发现另一种有内存或时间溢出问题；但两种解法都基于排序+双指针！！！
-    n := len(nums) // 要点一：left代表左边界元素，对于一组相同的数会指最左边那一个；mid和right为中间的元素和右边界的元素！！！
-    result := [][]int{} // left，mid，right的值可以相同，但不能重复往result添加已存在的答案组合！！！
-	
-    sort.Ints(nums) // sort.Ints()数组排序！！！
+func threeSum(nums []int) [][]int { // 类似题目为四数之和！！！
+	result := [][]int{} // p1，left，right指向的值可以相同，但不能重复往result添加已存在的答案组合！！！
+    n := len(nums)
+    if (n < 3) {
+        return result
+    }
 
-	for i:=0; i<n-2; i++ {
-		left := nums[i]
-		if left > 0 { // 要点二：左边界右边元素都不小于左边界元素值，直接退出！！！
-			break
-		}
-		if i > 0 && left == nums[i-1] { // 要点三：分别确定left，mid，right位置（对于一组相同的数left会指在最左边）！！！
-			continue
-		}
+    sort.Ints(nums) // 先排序！！！
+
+	for p1:=0; p1<n-2; p1++ {
+        if p1 > 0 && nums[p1] == nums[p1-1] { // 记住三个剪枝操作，加强代码效率！！！
+            continue;
+        }
+		if nums[p1] + nums[p1+1] + nums[p1+2] > 0 {
+            break;
+        }
+        if nums[p1] + nums[n-1] + nums[n-2] < 0 {
+            continue;
+        }
 		
-        	p1, p2 := i+1, n-1 // 要点四：当前left固定（left在外层循环移），定义mid和right的双指针p1和p2，并写while循环！！！
-		for (p1 < p2) { 
-			mid, right := nums[p1], nums[p2]
-			if left + mid + right == 0 {
-				result = append(result, []int{left, mid, right})
-				for (p1 < p2 && nums[p1] == mid) { // 要点五：注意该移动指针的写法与Java答案区分！！！
-					p1++
-				}
-				for (p1 < p2 && nums[p2] == right) { // 此处循环是为了使下一个答案不重复！！！
-					p2--
-				}
-			} else if left + mid + right < 0 {
-				p1++
-			} else {
-				p2--
-			}
-		}
+        left, right := p1+1, n-1 // 当前p1固定，对left和right写while循环的双指针！！！
+        for left < right {
+            sum := nums[p1] + nums[left] + nums[right];
+            if sum == 0 {
+                result = append(result, []int{nums[p1], nums[left], nums[right]}); // append一个数组！！！
+                for left < right && nums[left] == nums[left+1] {
+                    left++
+                }
+                left++
+                for left < right && nums[right] == nums[right-1] { // 此处循环旨在提前移动指针使下一个答案不重复！！！
+                    right--
+                }
+                right--
+            } else if sum < 0 {
+                for left < right && nums[left] == nums[left+1] {
+                    left++
+                }
+                left++
+            } else {
+                for left < right && nums[right] == nums[right-1] {
+                    right--
+                }
+                right--
+            }
+        }
 	}
 	return result
 }
