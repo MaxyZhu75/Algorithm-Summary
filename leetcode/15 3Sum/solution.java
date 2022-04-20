@@ -1,31 +1,28 @@
 class Solution {
-    public List<List<Integer>> threeSum(int[] nums) { // Java´ğ°¸ÓëGo´ğ°¸µÄ±äÁ¿¶¨ÒåÓĞÇø±ğ£¬ÒòÎª¶¨ÒåÒ»ÑùÊ±LeetCodeÉÏ»á·¢ÏÖÁíÒ»ÖÖÓĞÄÚ´æ»òÊ±¼äÒç³öÎÊÌâ£»µ«Á½ÖÖ½â·¨¶¼»ùÓÚÅÅĞò+Ë«Ö¸Õë£¡£¡£¡
-        int n = nums.length; // ÒªµãÒ»£ºleft´ú±í×ó±ß½çÖ¸Õë£¬¶ÔÓÚÒ»×éÏàÍ¬µÄÊı»áÖ¸ÔÚ×î×ó±ß£»midºÍrightÎªÖĞ¼äÖ¸ÕëºÍÓÒ±ß½çÖ¸Õë£¡£¡£¡
-        List<List<Integer>> result = new ArrayList<>(); // left£¬mid£¬rightÖ¸ÏòµÄÖµ¿ÉÒÔÏàÍ¬£¬µ«²»ÄÜÖØ¸´ÍùresultÌí¼ÓÒÑ´æÔÚµÄ´ğ°¸×éºÏ£¡£¡£¡
+    public List<List<Integer>> threeSum(int[] nums) { // ç±»ä¼¼é¢˜ç›®ä¸ºå››æ•°ä¹‹å’Œï¼ï¼ï¼
+        List<List<Integer>> result = new ArrayList<>(); // p1ï¼Œleftï¼ŒrightæŒ‡å‘çš„å€¼å¯ä»¥ç›¸åŒï¼Œä½†ä¸èƒ½é‡å¤å¾€resultæ·»åŠ å·²å­˜åœ¨çš„ç­”æ¡ˆç»„åˆï¼ï¼ï¼
+        if (nums == null || nums.length < 3) return result;
+        int n = nums.length;
 
-        Arrays.sort(nums);
+        Arrays.sort(nums); // å…ˆæ’åºï¼ï¼ï¼
 
-        for (int left=0; left<n-2; left++) {
-            if (nums[left] > 0) { // Òªµã¶ş£º×ó±ß½çÓÒ±ßÔªËØ¶¼²»Ğ¡ÓÚ×ó±ß½çÔªËØÖµ£¬Ö±½ÓÍË³ö£¡£¡£¡
-                break;
-            }
-           
-            if (left > 0 && nums[left] == nums[left-1]) { // ÒªµãÈı£º·Ö±ğÈ·¶¨left£¬mid£¬rightÎ»ÖÃ£¨¶ÔÓÚÒ»×éÏàÍ¬µÄÊıleft»áÖ¸ÔÚ×î×ó±ß£©£¡£¡£¡
-                continue;
-            }
-            int mid = left+1;
-            int right = n-1;
+        for (int p1=0; p1<n-2; p1++) {
+            if (p1 > 0 && nums[p1] == nums[p1-1]) continue; // è®°ä½ä¸‰ä¸ªå‰ªææ“ä½œï¼ŒåŠ å¼ºä»£ç æ•ˆç‡ï¼ï¼ï¼
+			if ((long) nums[p1] + nums[p1+1] + nums[p1+2] > 0) break;
+            if ((long) nums[p1] + nums[n-1] + nums[n-2] < 0) continue; // longå¯é˜²æ­¢åŠ æ³•æº¢å‡ºé—®é¢˜ï¼›æ­¤å¤„äº¦å¯ç›´æ¥æ¢æˆå‡æ³•é¿å…æº¢å‡ºï¼ï¼ï¼
             
-            while (mid < right) { // ÒªµãËÄ£ºµ±Ç°left¹Ì¶¨£¨leftÔÚÍâ²ãÑ­»·ÒÆ£©£¬¶ÔmidºÍrightĞ´whileÑ­»·µÄË«Ö¸Õë£¡£¡£¡
-                int sum = nums[left] + nums[mid] + nums[right];
+            int left = p1 + 1; // å½“å‰p1å›ºå®šï¼Œå¯¹leftå’Œrightå†™whileå¾ªç¯çš„åŒæŒ‡é’ˆï¼ï¼ï¼
+            int right = n-1;
+            while (left < right) {
+                int sum = nums[p1] + nums[left] + nums[right];
                 if (sum == 0) {
-                    result.add(Arrays.asList(nums[left], nums[mid], nums[right])); // Arrays.asList(a, b, c)£¡£¡£¡
-                    while (mid < right && nums[mid] == nums[++mid]);
-                    while (mid < right && nums[right] == nums[--right]); // ÒªµãÎå£º×¢Òâ¸ÃÒÆ¶¯Ö¸ÕëµÄĞ´·¨ÓëGo´ğ°¸Çø·Ö£¡£¡£¡
+                    result.add(Arrays.asList(nums[p1], nums[left], nums[right])); // Arrays.asList(a, b, c)ï¼ï¼ï¼
+                    while (left < right && nums[left] == nums[++left]);
+                    while (left < right && nums[right] == nums[--right]); // æ­¤å¤„å¾ªç¯æ—¨åœ¨æå‰ç§»åŠ¨æŒ‡é’ˆä½¿ä¸‹ä¸€ä¸ªç­”æ¡ˆä¸é‡å¤ï¼ï¼ï¼
                 } else if (sum < 0) {
-                    while (mid < right && nums[mid] == nums[++mid]); // ´Ë´¦Ñ­»·ÊÇÎªÁËÊ¹ÏÂÒ»¸ö´ğ°¸²»ÖØ¸´£¡£¡£¡
+                    while (left < right && nums[left] == nums[++left]);
                 } else {
-                    while (mid < right && nums[right] == nums[--right]);
+                    while (left < right && nums[right] == nums[--right]);
                 }
             }
         }
