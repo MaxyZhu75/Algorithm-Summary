@@ -20,7 +20,7 @@ func threeSum(nums []int) [][]int { // 类似题目为四数之和！！！
 		
         left, right := p1+1, n-1 // 当前p1固定，对left和right写while循环的双指针！！！
         for left < right {
-            sum := nums[p1] + nums[left] + nums[right];
+            sum := nums[p1] + nums[left] + nums[right]
             if sum == 0 {
                 result = append(result, []int{nums[p1], nums[left], nums[right]}) // append一个数组！！！
                 for left < right && nums[left] == nums[left+1] {
