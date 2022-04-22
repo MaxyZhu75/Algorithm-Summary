@@ -4,7 +4,7 @@ class Solution { // 该题与LeetCode第907题使用单调栈的方式有区别�
 	
 	public long subArrayRanges(int[] nums) {
         this.nums = nums;
-		this.n = nums.length;
+	this.n = nums.length;
         long result = 0;
 
         Deque<Integer> myStack = new ArrayDeque<>(); // 单调栈！！！
