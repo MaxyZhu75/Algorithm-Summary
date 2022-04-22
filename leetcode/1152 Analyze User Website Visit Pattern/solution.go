@@ -19,7 +19,7 @@ func mostVisitedPattern(username []string, timestamp []int, website []string) []
         hashRecord[visit[i].username] = append(hashRecord[visit[i].username], visit[i]) // 哈希表存储形式：<username，浏览记录元组的数组>！！！
     }
     
-	scores := make(map[[3]string]int)
+    scores := make(map[[3]string]int)
     for _, userTuples := range hashRecord {
         count := make(map[[3]string]int)
         for i:=0; i<len(userTuples); i++ { // 三重遍历用户访问过的website，获得当前user所有的访问路径组合！！！
