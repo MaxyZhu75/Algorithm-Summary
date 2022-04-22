@@ -1,7 +1,7 @@
-func trailingZeroes(n int) int { // n£¡½×³ËÌâÄ¿Î²²¿µÄ0ÓÉ2*5µÃÀ´£¬ÓÉÓÚ2µÄÊýÁ¿¶àÓÚ5£¬Í³¼ÆNÓÐ¶àÉÙ¸ö5¼´¿É£¡£¡£¡
-    fives := 0 // Í¬Ñù£¬Çón£¡¶þ½øÖÆ±íÊ¾ÖÐ×îµÍÎ»1µÄÎ»ÖÃ£¬ÊÇÍ³¼ÆNÓÐ¶àÉÙ¸ö2£¡£¡£¡
+func trailingZeroes(n int) int { // nï¼é˜¶ä¹˜é¢˜ç›®å°¾éƒ¨çš„0ç”±2*5å¾—æ¥ï¼Œç”±äºŽ2çš„æ•°é‡å¤šäºŽ5ï¼Œç»Ÿè®¡Næœ‰å¤šå°‘ä¸ª5å³å¯ï¼ï¼ï¼
+    fives := 0 // åŒæ ·ï¼Œæ±‚nï¼äºŒè¿›åˆ¶è¡¨ç¤ºä¸­æœ€ä½Žä½1çš„ä½ç½®ï¼Œæ˜¯ç»Ÿè®¡Næœ‰å¤šå°‘ä¸ª2ï¼ï¼ï¼
     for (n != 0) {
-        fives += n/5 // NËù°üº¬µÄ5µÄ¸öÊýÓÉ£ºN/5 + N/25 + N/125......£¡£¡£¡
+        fives += n/5 // Næ‰€åŒ…å«çš„5çš„ä¸ªæ•°ï¼šN/5 + N/25 + N/125......ï¼ï¼ï¼
         n /= 5
     }
     return fives
