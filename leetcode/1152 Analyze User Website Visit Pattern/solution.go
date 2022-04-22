@@ -1,4 +1,4 @@
-type Tuple struct { // Ê×ÏÈÎÒÃÇĞèÒª½«username£¬timestampºÍwebsiteÕâ3¸ö¶«Î÷°ó¶¨ÆğÀ´£¡£¡£¡
+type Tuple struct { // é¦–å…ˆæˆ‘ä»¬éœ€è¦å°†usernameï¼Œtimestampå’Œwebsiteè¿™3ä¸ªä¸œè¥¿ç»‘å®šèµ·æ¥ï¼ï¼ï¼
     username string
     timestamp int
     website string
@@ -7,41 +7,41 @@ type Tuple struct { // Ê×ÏÈÎÒÃÇĞèÒª½«username£¬timestampºÍwebsiteÕâ3¸ö¶«Î÷°ó¶¨Æğ
 func mostVisitedPattern(username []string, timestamp []int, website []string) []string {
     visit := make([]Tuple, len(username))
     for i:=0; i<len(username); i++ {
-        visit[i] = Tuple{username[i], timestamp[i], website[i]} // °ÑËùÓĞä¯ÀÀ¼ÇÂ¼Ôª×é·ÅÈëvisitÊı×é£¡£¡£¡
+        visit[i] = Tuple{username[i], timestamp[i], website[i]} // æŠŠæ‰€æœ‰æµè§ˆè®°å½•å…ƒç»„æ”¾å…¥visitæ•°ç»„ï¼ï¼ï¼
     }
 	
     sort.Slice(visit, func(i, j int) bool {
-        return visit[i].timestamp < visit[j].timestamp // ÖØĞ´Êı×éÅÅĞò·½·¨£¬°´ÕÕtimestampÅÅĞò£¬±£Ö¤ÓÃ»§µÄ·ÃÎÊ¼ÇÂ¼ÓĞĞò£¡£¡£¡
+        return visit[i].timestamp < visit[j].timestamp // é‡å†™æ•°ç»„æ’åºæ–¹æ³•ï¼ŒæŒ‰ç…§timestampæ’åºï¼Œä¿è¯ç”¨æˆ·çš„è®¿é—®è®°å½•æœ‰åºï¼ï¼ï¼
     })
 	
-    hashRecord := make(map[string][]Tuple) // Ê¹ÓÃHashMap´æ´¢Ã¿¸öÓÃ»§¸÷×Ôä¯ÀÀ¼ÇÂ¼Ôª×é£¡£¡£¡
+    hashRecord := make(map[string][]Tuple) // ä½¿ç”¨HashMapå­˜å‚¨æ¯ä¸ªç”¨æˆ·å„è‡ªæµè§ˆè®°å½•å…ƒç»„ï¼ï¼ï¼
     for i:=0; i<len(visit); i++ {
-        hashRecord[visit[i].username] = append(hashRecord[visit[i].username], visit[i]) // ¹şÏ£±í´æ´¢ĞÎÊ½£º<username£¬ä¯ÀÀ¼ÇÂ¼Ôª×éµÄÊı×é>£¡£¡£¡
+        hashRecord[visit[i].username] = append(hashRecord[visit[i].username], visit[i]) // å“ˆå¸Œè¡¨å­˜å‚¨å½¢å¼ï¼š<usernameï¼Œæµè§ˆè®°å½•å…ƒç»„çš„æ•°ç»„>ï¼ï¼ï¼
     }
     
 	scores := make(map[[3]string]int)
     for _, userTuples := range hashRecord {
         count := make(map[[3]string]int)
-        for i:=0; i<len(userTuples); i++ { // ÈıÖØ±éÀúÓÃ»§·ÃÎÊ¹ıµÄwebsite£¬»ñµÃµ±Ç°userËùÓĞµÄ·ÃÎÊÂ·¾¶×éºÏ£¡£¡£¡
+        for i:=0; i<len(userTuples); i++ { // ä¸‰é‡éå†ç”¨æˆ·è®¿é—®è¿‡çš„websiteï¼Œè·å¾—å½“å‰useræ‰€æœ‰çš„è®¿é—®è·¯å¾„ç»„åˆï¼ï¼ï¼
             for j:=i+1; j<len(userTuples); j++ {
                 for k:=j+1; k<len(userTuples); k++ {
                     pattern := [3]string{userTuples[i].website, userTuples[j].website, userTuples[k].website}
-					count[pattern] = 1 // ¶ÔÓÚµ±Ç°Í¬Ò»¸öuser£¬¸Ã·ÃÎÊÂ·¾¶¼ÆÈëscoreÊ±Ö»¼Æ1·Ö£¡£¡£¡
+					count[pattern] = 1 // å¯¹äºå½“å‰åŒä¸€ä¸ªuserï¼Œè¯¥è®¿é—®è·¯å¾„è®¡å…¥scoreæ—¶åªè®¡1åˆ†ï¼ï¼ï¼
                 }
             }
         }
-        for pattern, points := range count { // ×¢ÒâÑ­»·Î»ÖÃ£¬±éÀúÍêµ±Ç°user·ÃÎÊ¼ÇÂ¼ºóËã·Ö£¡£¡£¡
+        for pattern, points := range count { // æ³¨æ„å¾ªç¯ä½ç½®ï¼Œéå†å®Œå½“å‰userè®¿é—®è®°å½•åç®—åˆ†ï¼ï¼ï¼
             scores[pattern] += points
         }
     }
     
-	max := -1
+    max := -1
     result := [3]string{}
-    for pattern, score := range scores { // »ñÈ¡×î´ó·ÖÊıµÄ·ÃÎÊÄ£Ê½£¡£¡£¡
+    for pattern, score := range scores { // è·å–æœ€å¤§åˆ†æ•°çš„è®¿é—®æ¨¡å¼ï¼ï¼ï¼
         if score > max {
             result = pattern
             max = score
-        } else if score == max { // Èç¹û·ÃÎÊÄ£Ê½¾ßÓĞÏàÍ¬µÄ×î´ó·ÖÊı£¬È¡×ÖµäĞòÅÅÁĞ×îĞ¡µÄÄÇ¸ö£¡£¡£¡
+        } else if score == max { // å¦‚æœè®¿é—®æ¨¡å¼å…·æœ‰ç›¸åŒçš„æœ€å¤§åˆ†æ•°ï¼Œå–å­—å…¸åºæ’åˆ—æœ€å°çš„é‚£ä¸ªï¼ï¼ï¼
             if pattern[0] < result[0] || (pattern[0] == result[0] && pattern[1] < result[1] || (pattern[0] == result[0] && pattern[1] == result[1] && pattern[2] < result[2])) {
                 result = pattern
             }
