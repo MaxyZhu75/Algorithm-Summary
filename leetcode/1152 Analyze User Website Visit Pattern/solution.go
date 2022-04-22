@@ -26,7 +26,7 @@ func mostVisitedPattern(username []string, timestamp []int, website []string) []
             for j:=i+1; j<len(userTuples); j++ {
                 for k:=j+1; k<len(userTuples); k++ {
                     pattern := [3]string{userTuples[i].website, userTuples[j].website, userTuples[k].website}
-					count[pattern] = 1 // 对于当前同一个user，该访问路径计入score时只计1分！！！
+		    count[pattern] = 1 // 对于当前同一个user，该访问路径计入score时只计1分！！！
                 }
             }
         }
