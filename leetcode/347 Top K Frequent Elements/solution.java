@@ -1,20 +1,20 @@
 class Solution {
-    public int[] topKFrequent(int[] nums, int k) { // Ç°k¸öÔªËØÎÊÌâ£»ÓÅÏÈ¶ÓÁĞÊµÏÖ¶Ñ£¡£¡£¡
-        Map<Integer, Integer> hashRecord = new HashMap<>(); // Í³¼ÆÃ¿¸öÊı×ÖµÄÆµÂÊ£¡£¡£¡
+    public int[] topKFrequent(int[] nums, int k) { // å‰kä¸ªå…ƒç´ é—®é¢˜ï¼›ä¼˜å…ˆé˜Ÿåˆ—å®ç°å †ï¼ï¼ï¼
+        Map<Integer, Integer> hashRecord = new HashMap<>(); // ç»Ÿè®¡æ¯ä¸ªæ•°å­—çš„é¢‘ç‡ï¼ï¼ï¼
         for (int num : nums) {
             hashRecord.put(num, hashRecord.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<int[]> heap = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]); // Ğ¡¸ù¶Ñ£»±éÀú¹ı³ÌÖĞ±£³Ö¶ÑµÄ´óĞ¡Îªk¸öÔªËØ¼´¿É£¡£¡£¡
+        PriorityQueue<int[]> heap = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]); // å°æ ¹å †ï¼›éå†è¿‡ç¨‹ä¸­ä¿æŒå †çš„å¤§å°ä¸ºkä¸ªå…ƒç´ å³å¯ï¼ï¼ï¼
         
-		for (Map.Entry<Integer, Integer> entry : hashRecord.entrySet()) {
+	for (Map.Entry<Integer, Integer> entry : hashRecord.entrySet()) {
             int num = entry.getKey(), frequency = entry.getValue();
-            if (heap.size() == k) { // case1£º¶ÑµÄÔªËØ¸öÊıµÈÓÚk£¬Ôò¼ì²érootÓëĞÂ½ÚµãµÄfrequency£¡£¡£¡
-                if (heap.peek()[1] < frequency) { // Èç¹ûĞÂ½ÚµãÆµÂÊ¸ü¸ß£¬Ôòµ¯³öroot£¬½«ĞÂ½Úµã¼ÓÈë¶ÑÖĞ£¡£¡£¡
+            if (heap.size() == k) { // case1ï¼šå †çš„å…ƒç´ ä¸ªæ•°ç­‰äºkï¼Œåˆ™æ£€æŸ¥rootä¸æ–°èŠ‚ç‚¹çš„frequencyï¼ï¼ï¼
+                if (heap.peek()[1] < frequency) { // å¦‚æœæ–°èŠ‚ç‚¹é¢‘ç‡æ›´é«˜ï¼Œåˆ™å¼¹å‡ºrootï¼Œå°†æ–°èŠ‚ç‚¹åŠ å…¥å †ä¸­ï¼ï¼ï¼
                     heap.poll();
                     heap.add(new int[]{num, frequency});
                 }
-            } else { // case2£ºÈç¹û¶ÑµÄÔªËØ¸öÊıĞ¡ÓÚk£¬Ôò½«ĞÂ½ÚµãÖ±½Ó¼ÓÈë¶ÑÖĞ£¡£¡£¡
+            } else { // case2ï¼šå¦‚æœå †çš„å…ƒç´ ä¸ªæ•°å°äºkï¼Œåˆ™å°†æ–°èŠ‚ç‚¹ç›´æ¥åŠ å…¥å †ä¸­ï¼ï¼ï¼
                 heap.add(new int[]{num, frequency});
             }
         }
