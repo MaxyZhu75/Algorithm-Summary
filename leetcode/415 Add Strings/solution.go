@@ -1,4 +1,4 @@
-func addStrings(num1 string, num2 string) string { // Ö¸Õë´ÓºóÍùÇ°·ûºÏÊ®½øÖÆ´ÓµÍÎ»Ïà¼ÓµÄÄ£Äâ£»ÓëLeetCode67ÌâÀàËÆ£¡£¡£¡
+func addStrings(num1 string, num2 string) string { // æŒ‡é’ˆä»åå¾€å‰ç¬¦åˆåè¿›åˆ¶ä»ä½ä½ç›¸åŠ çš„æ¨¡æ‹Ÿï¼›ä¸LeetCode67é¢˜ç±»ä¼¼ï¼ï¼ï¼
     p1, p2 := len(num1)-1, len(num2)-1
     carry := 0;
     var result string = ""
@@ -6,14 +6,14 @@ func addStrings(num1 string, num2 string) string { // Ö¸Õë´ÓºóÍùÇ°·ûºÏÊ®½øÖÆ´ÓµÍ
     for (p1 >= 0 || p2 >= 0 || carry == 1) {
         a, b := 0, 0
         if p1 >= 0 {
-            a = int(num1[p1] - '0') // Go´Ó×Ö·û´®ÖĞÌáÈ¡Êı×Ö×Ö·û»ò×ÖÄ¸×Ö·ûºó£¬ĞèÒª¼õÏàÓ¦µÄ¡®0¡¯»ò¡®a¡¯£¬ÇÒÔÙÊ¹ÓÃÇ¿ÖÆ×ªĞÍ£¡£¡£¡
+            a = int(num1[p1] - '0') // Goä»å­—ç¬¦ä¸²ä¸­æå–æ•°å­—å­—ç¬¦æˆ–å­—æ¯å­—ç¬¦åï¼Œéœ€è¦å‡ç›¸åº”çš„â€˜0â€™æˆ–â€˜aâ€™ï¼Œä¸”å†ä½¿ç”¨å¼ºåˆ¶è½¬å‹ï¼ï¼ï¼
         }
 
         if p2 >= 0 {
             b = int(num2[p2] - '0')
         }
 
-        sum := (a + b + carry) % 10 // ½øÎ» = (carry+a+b)/2£»µ±Ç°bit = (carrry+a+b)%2£¡£¡£¡
+        sum := (a + b + carry) % 10 // è¿›ä½ = (carry+a+b)/10ï¼›å½“å‰bit = (carrry+a+b)%10ï¼ï¼ï¼
         carry = (a + b + carry) / 10
         result = strconv.Itoa(sum) + result
         p1--
