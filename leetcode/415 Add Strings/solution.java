@@ -1,14 +1,14 @@
 class Solution {
-    public String addStrings(String num1, String num2) { // Ö¸Õë´ÓºóÍùÇ°·ûºÏÊ®½øÖÆ´ÓµÍÎ»Ïà¼ÓµÄÄ£Äâ£»ÓëLeetCode67ÌâÀàËÆ£¡£¡£¡
+    public String addStrings(String num1, String num2) { // æŒ‡é’ˆä»åå¾€å‰ç¬¦åˆåè¿›åˆ¶ä»ä½ä½ç›¸åŠ çš„æ¨¡æ‹Ÿï¼›ä¸LeetCode67é¢˜ç±»ä¼¼ï¼ï¼ï¼
         int p1 = num1.length()-1, p2 = num2.length()-1;
         int carry = 0;
         
         StringBuilder sb = new StringBuilder();
 
         while (p1 >= 0 || p2 >= 0 || carry == 1) {
-            int a = (p1 < 0) ? 0 : num1.charAt(p1)-'0'; // java´Ó×Ö·û´®ÖĞÌáÈ¡Êı×Ö×Ö·û»ò×ÖÄ¸×Ö·ûºó£¬¼õÏàÓ¦µÄ¡®0¡¯»ò¡®a¡¯¼´»á×ªÊı×Ö£¡£¡£¡
+            int a = (p1 < 0) ? 0 : num1.charAt(p1)-'0'; // javaä»å­—ç¬¦ä¸²ä¸­æå–æ•°å­—å­—ç¬¦æˆ–å­—æ¯å­—ç¬¦åï¼Œå‡ç›¸åº”çš„â€˜0â€™æˆ–â€˜aâ€™å³ä¼šè½¬æ•°å­—ï¼ï¼ï¼
             int b = (p2 < 0) ? 0 : num2.charAt(p2)-'0';
-            int sum = (a + b + carry) % 10; // ½øÎ» = (carry+a+b)/2£»µ±Ç°bit = (carrry+a+b)%2£¡£¡£¡
+            int sum = (a + b + carry) % 10; // è¿›ä½ = (carry+a+b)/10ï¼›å½“å‰bit = (carrry+a+b)%10ï¼ï¼ï¼
             carry = (a + b + carry) / 10;
             sb.append(sum);
             p1--;
