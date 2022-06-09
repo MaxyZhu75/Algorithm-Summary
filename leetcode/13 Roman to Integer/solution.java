@@ -15,15 +15,15 @@ class Solution {
         int currentVal = 0;
         int nextVal = 0;
         for (int i=0; i<n-1; i++) {
-            currentVal = hashRecord.get(s.charAt(i));
+            currentVal = hashRecord.get(s.charAt(i)); // 遍历时每次要取「两个字符」进行操作判断！！！
             nextVal = hashRecord.get(s.charAt(i+1));
             if (currentVal < nextVal) {
-                result -= currentVal; // case1: С�������ڴ�����ֵ���ߣ��ɹ����֪����6��������ڴ��м�ȥ��С�����ּ��ɣ�����
+                result -= currentVal; // case1: 小的数字在大的数字的左边，由规则可知仅有6种情况，在答案中减去该小的数字即可！！！
             } else {
-                result += currentVal; // case2: С�������ڴ�����ֵ��ұߣ���ô���Խ�ÿ���ַ�����һ��������ֵ���ۼ�ÿ���ַ���Ӧ����ֵ���ɣ�����
+                result += currentVal; // case2: 小的数字在大的数字的右边，那么可以将每个字符视作一个单独的值，累加每个字符对应的数值即可！！！
             }
         }
-        result += hashRecord.get(s.charAt(n-1)); // ĩβ���ֵ�ֵ��Ȼ��Ҫ����𰸣�����
+        result += hashRecord.get(s.charAt(n-1)); // 末尾数字的值必然需要加入答案！！！
         return result;
     }
 }
