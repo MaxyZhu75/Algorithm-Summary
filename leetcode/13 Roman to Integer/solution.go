@@ -3,13 +3,13 @@ func romanToInt(s string) int {
     
     result, currentVal, nextVal := 0, 0, 0
     for i:=0; i<len(s)-1; i++ {
-        currentVal, nextVal = hashRecord[s[i]], hashRecord[s[i+1]]
+        currentVal, nextVal = hashRecord[s[i]], hashRecord[s[i+1]] // 遍历时每次要取「两个字符」进行操作判断！！！
         if currentVal < nextVal {
-            result -= currentVal // case1: С�������ڴ�����ֵ���ߣ��ɹ����֪����6��������ڴ��м�ȥ��С�����ּ��ɣ�����
+            result -= currentVal // case1: 小的数字在大的数字的左边，由规则可知仅有6种情况，在答案中减去该小的数字即可！！！
         } else {
-            result += currentVal // case2: С�������ڴ�����ֵ��ұߣ���ô���Խ�ÿ���ַ�����һ��������ֵ���ۼ�ÿ���ַ���Ӧ����ֵ���ɣ�����
+            result += currentVal // case2: 小的数字在大的数字的右边，那么可以将每个字符视作一个单独的值，累加每个字符对应的数值即可！！！
         }
     }
-    result += hashRecord[s[len(s)-1]] // ĩβ���ֵ�ֵ��Ȼ��Ҫ����𰸣�����
+    result += hashRecord[s[len(s)-1]] // 末尾数字的值必然需要加入答案！！！
     return result
 }
