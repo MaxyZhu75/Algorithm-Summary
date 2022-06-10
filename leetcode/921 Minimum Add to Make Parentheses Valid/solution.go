@@ -1,4 +1,4 @@
-func minAddToMakeValid(s string) int { // ·½·¨¶ş£ºÎ¬»¤balance±äÁ¿£¡£¡£¡
+func minAddToMakeValid(s string) int { // æ–¹æ³•äºŒï¼šç»´æŠ¤balanceå˜é‡ï¼ï¼ï¼
     left, balance := 0, 0
     for _, letter := range s {
         if letter == '(' {
@@ -12,5 +12,5 @@ func minAddToMakeValid(s string) int { // ·½·¨¶ş£ºÎ¬»¤balance±äÁ¿£¡£¡£¡
             }
         }
     }
-    return left + balance // ĞèÒªÌí¼ÓµÄ×óÀ¨ºÅÊıÁ¿ + ĞèÒªÌí¼ÓµÄÓÒÀ¨ºÅÊıÁ¿
+    return left + balance // éœ€è¦æ·»åŠ çš„å·¦æ‹¬å·æ•°é‡ + éœ€è¦æ·»åŠ çš„å³æ‹¬å·æ•°é‡ï¼ï¼ï¼
 }
