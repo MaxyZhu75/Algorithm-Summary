@@ -1,7 +1,7 @@
 class Solution {
-    public int minAddToMakeValid(String s) { // ·½·¨Ò»£ºÊ¹ÓÃDeque½Ó¿ÚÊµÏÖÕ»£¡£¡£¡
+    public int minAddToMakeValid(String s) { // æ–¹æ³•ä¸€ï¼šä½¿ç”¨Dequeæ¥å£å®ç°æ ˆï¼ï¼ï¼
         int left = 0;
-        Deque<Character> myStack = new ArrayDeque<>(); // import java.util.Deque; import java.util.ArrayDeque£¡£¡£¡
+        Deque<Character> myStack = new ArrayDeque<>(); // import java.util.Deque; import java.util.ArrayDequeï¼ï¼ï¼
 
         for (char letter : s.toCharArray()) {
             if (letter == '(') {
@@ -14,6 +14,6 @@ class Solution {
                 }
             }
         }
-        return left + myStack.size(); // ĞèÒªÌí¼ÓµÄ×óÀ¨ºÅÊıÁ¿ + ĞèÒªÌí¼ÓµÄÓÒÀ¨ºÅÊıÁ¿
+        return left + myStack.size(); // éœ€è¦æ·»åŠ çš„å·¦æ‹¬å·æ•°é‡ + éœ€è¦æ·»åŠ çš„å³æ‹¬å·æ•°é‡ï¼ï¼ï¼
     }
 }
