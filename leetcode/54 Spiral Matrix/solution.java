@@ -1,21 +1,21 @@
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) { // °´Ã¿²ã±ß½ç±éÀú£»¿É²Î¿¼LeetCode¹Ù·½Í¼½â£¡£¡£¡
+    public List<Integer> spiralOrder(int[][] matrix) { // æŒ‰æ¯å±‚è¾¹ç•Œéå†ï¼›å¯å‚è€ƒLeetCodeå®˜æ–¹å›¾è§£ï¼ï¼ï¼
         List<Integer> result = new ArrayList<Integer>();
-        int left = 0, right = matrix[0].length-1, top = 0, bottom = matrix.length-1; // ÉÏÏÂ×óÓÒËÄ¸ö±ß½ç£¡£¡£¡
+        int left = 0, right = matrix[0].length-1, top = 0, bottom = matrix.length-1; // ä¸Šä¸‹å·¦å³å››ä¸ªè¾¹ç•Œï¼ï¼ï¼
         
 		while (left <= right && top <= bottom) {
-            for (int column = left; column <= right; column++) { // ÉÏ±ß½ç£¡£¡£¡
-                result.add(matrix[top][column]);
+            for (int j = left; j <= right; j++) { // ä¸Šè¾¹ç•Œï¼ï¼ï¼
+                result.add(matrix[top][j]);
             }
-            for (int row = top+1; row <= bottom; row++) { // ÓÒ±ß½ç£¡£¡£¡
-                result.add(matrix[row][right]);
+            for (int i = top+1; i <= bottom; i++) { // å³è¾¹ç•Œï¼ï¼ï¼
+                result.add(matrix[i][right]);
             }
             if (left < right && top < bottom) {
-                for (int column = right-1; column > left; column--) { // ÏÂ±ß½ç£¡£¡£¡
-                    result.add(matrix[bottom][column]);
+                for (int j = right-1; j > left; j--) { // ä¸‹è¾¹ç•Œï¼ï¼ï¼
+                    result.add(matrix[bottom][j]);
                 }
-                for (int row = bottom; row > top; row--) { // ×ó±ß½ç£¡£¡£¡
-                    result.add(matrix[row][left]);
+                for (int i = bottom; i > top; i--) { // å·¦è¾¹ç•Œï¼ï¼ï¼
+                    result.add(matrix[i][left]);
                 }
             }
             left++;
