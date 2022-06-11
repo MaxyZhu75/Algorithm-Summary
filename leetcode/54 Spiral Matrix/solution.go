@@ -1,19 +1,19 @@
-func spiralOrder(matrix [][]int) []int { // °´Ã¿²ã±ß½ç±éÀú£»¿É²Î¿¼LeetCode¹Ù·½Í¼½â£¡£¡£¡
-    left, right, top, bottom := 0, len(matrix[0])-1, 0, len(matrix)-1 // ÉÏÏÂ×óÓÒËÄ¸ö±ß½ç£¡£¡£¡
+func spiralOrder(matrix [][]int) []int { // æŒ‰æ¯å±‚è¾¹ç•Œéå†ï¼›å¯å‚è€ƒLeetCodeå®˜æ–¹å›¾è§£ï¼ï¼ï¼
+    left, right, top, bottom := 0, len(matrix[0])-1, 0, len(matrix)-1 // ä¸Šä¸‹å·¦å³å››ä¸ªè¾¹ç•Œï¼ï¼ï¼
     result := []int{}
     for left <= right && top <= bottom {
-        for colum := left; colum <= right; colum++ { // ÉÏ±ß½ç£¡£¡£¡
-            result = append(result, matrix[top][colum])
+        for j := left; j <= right; j++ { // ä¸Šè¾¹ç•Œï¼ï¼ï¼
+            result = append(result, matrix[top][j])
         }
-        for row := top+1; row <= bottom; row++ { // ÓÒ±ß½ç£¡£¡£¡
-            result = append(result, matrix[row][right])
+        for i := top+1; i <= bottom; i++ { // å³è¾¹ç•Œï¼ï¼ï¼
+            result = append(result, matrix[i][right])
         }
         if left < right && top < bottom {
-            for colum := right-1; colum > left; colum-- { // ÏÂ±ß½ç£¡£¡£¡
-                result = append(result, matrix[bottom][colum])
+            for j := right-1; j > left; j-- { // ä¸‹è¾¹ç•Œï¼ï¼ï¼
+                result = append(result, matrix[bottom][j])
             }
-            for row := bottom; row > top; row-- { // ×ó±ß½ç£¡£¡£¡
-                result = append(result, matrix[row][left])
+            for i := bottom; i > top; i-- { // å·¦è¾¹ç•Œï¼ï¼ï¼
+                result = append(result, matrix[i][left])
             }
         }
         left++
