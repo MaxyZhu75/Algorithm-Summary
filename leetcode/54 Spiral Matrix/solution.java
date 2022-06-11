@@ -3,7 +3,7 @@ class Solution {
         List<Integer> result = new ArrayList<Integer>();
         int left = 0, right = matrix[0].length-1, top = 0, bottom = matrix.length-1; // 上下左右四个边界！！！
         
-		while (left <= right && top <= bottom) {
+	while (left <= right && top <= bottom) {
             for (int j = left; j <= right; j++) { // 上边界！！！
                 result.add(matrix[top][j]);
             }
@@ -24,6 +24,6 @@ class Solution {
             bottom--;
         }
         
-		return result;
+	return result;
     }
 }
