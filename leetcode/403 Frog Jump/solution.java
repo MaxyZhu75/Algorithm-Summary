@@ -4,13 +4,13 @@ class Solution {
         boolean[][] d = new boolean[n][n]; // 能否通过「跳跃距离distance」从「前一个编号为j的石子」达到「当前编号为i的石子」！！！
         d[0][0] = true;
         
-		for (int i=1; i<n; i++) { // 每次跳跃之后跳跃距离至多增加1，到达编号i-1的石子时，之前至多跳了i-1次，下一跳至多跳 i 的距离！！！
+	for (int i=1; i<n; i++) { // 每次跳跃之后跳跃距离至多增加1，到达编号i-1的石子时，之前至多跳了i-1次，下一跳至多跳 i 的距离！！！
             if (stones[i] - stones[i-1] > i) {
                 return false; // 优化结论一：当编号i的石子与编号i-1的石子距离超过i时，青蛙必定无法到达终点，直接return！！！
             }
         }
 		
-		int distance = 0;
+	int distance = 0;
         for (int i=1; i<n; i++) {
             for (int j=i-1; j>=0; j--) {
                 distance = stones[i] - stones[j];
