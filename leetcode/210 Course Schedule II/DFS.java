@@ -1,4 +1,4 @@
-class Solution { // DFSÓĞÏòÍ¼ÍØÆËÅÅĞò£¡£¡£¡
+class Solution { // DFSæœ‰å‘å›¾æ‹“æ‰‘æ’åºï¼ï¼ï¼
     List<List<Integer>> adjacent;
     int[] status;
     int[] result;
@@ -6,18 +6,18 @@ class Solution { // DFSÓĞÏòÍ¼ÍØÆËÅÅĞò£¡£¡£¡
     int index;
 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        this.status = new int[numCourses]; // ±ê¼ÇÃ¿¸ö½ÚµãµÄ×´Ì¬£º0=Î´ËÑË÷£¬1=ËÑË÷ÖĞ£¬2=ÒÑÍê³É£¡£¡£¡
+        this.status = new int[numCourses]; // æ ‡è®°æ¯ä¸ªèŠ‚ç‚¹çš„çŠ¶æ€ï¼š0=æœªæœç´¢ï¼Œ1=æœç´¢ä¸­ï¼Œ2=å·²å®Œæˆï¼ï¼ï¼
         this.result = new int[numCourses];
-		this.index = numCourses-1; // ÄæĞòÌí¼Ó´ğ°¸£¡£¡£¡
-		this.adjacent = new ArrayList<List<Integer>>(); // ´æ´¢ÓĞÏòÍ¼£¬´æ´¢ËùÓĞ½ÚµãµÄ³ö±ß£¨¼´ÁÚ½Ó±í£©£¡£¡£¡
+	this.index = numCourses-1; // é€†åºæ·»åŠ ç­”æ¡ˆï¼ï¼ï¼
+	this.adjacent = new ArrayList<List<Integer>>(); // å­˜å‚¨æœ‰å‘å›¾ï¼Œå­˜å‚¨æ‰€æœ‰èŠ‚ç‚¹çš„å‡ºè¾¹ï¼ˆå³é‚»æ¥è¡¨ï¼‰ï¼ï¼ï¼
         for (int i=0; i<numCourses; i++) {
             adjacent.add(new ArrayList<Integer>());
         }
         for (int[] edge : prerequisites) {
-            adjacent.get(edge[1]).add(edge[0]); // ±¾Ìâ[u, v]±íÊ¾vÎªÏÈĞŞ¿Î£¬ÔòÍ¼ÖĞvÖ¸Ïòu£¡£¡£¡
+            adjacent.get(edge[1]).add(edge[0]); // æœ¬é¢˜[u, v]è¡¨ç¤ºvä¸ºå…ˆä¿®è¯¾ï¼Œåˆ™å›¾ä¸­væŒ‡å‘uï¼ï¼ï¼
         }
 
-        for (int i=0; i<numCourses && !loop; i++) { // Ã¿´ÎÌôÑ¡Ò»¸ö¡¸Î´ËÑË÷¡¹µÄ½Úµã£¬¿ªÊ¼½øĞĞÉî¶ÈÓÅÏÈËÑË÷£¡£¡£¡
+        for (int i=0; i<numCourses && !loop; i++) { // æ¯æ¬¡æŒ‘é€‰ä¸€ä¸ªã€Œæœªæœç´¢ã€çš„èŠ‚ç‚¹ï¼Œå¼€å§‹è¿›è¡Œæ·±åº¦ä¼˜å…ˆæœç´¢ï¼ï¼ï¼
             if (status[i] == 0) {
                 dfs(i);
             }
@@ -27,17 +27,17 @@ class Solution { // DFSÓĞÏòÍ¼ÍØÆËÅÅĞò£¡£¡£¡
     }
 
     public void dfs(int v) {
-		if (loop) return;
-		status[v] = 1; // ½«µ±Ç°½Úµãv±ê¼ÇÎª¡¸ËÑË÷ÖĞ¡¹£¡£¡£¡
-        for (int u : adjacent.get(v)) { // ±éÀúµ±Ç°½ÚµãËùÓĞ³ö±ß£¡£¡£¡
-            if (status[u] == 0) { // case1£ºÈôÁÚ¾Ó¡¸Î´ËÑË÷¡¹£¬ÔòDFSµİ¹é·ÃÎÊ¸ÃÂ·¾¶£¡£¡£¡
+	if (loop) return;
+	status[v] = 1; // å°†å½“å‰èŠ‚ç‚¹væ ‡è®°ä¸ºã€Œæœç´¢ä¸­ã€ï¼ï¼ï¼
+        for (int u : adjacent.get(v)) { // éå†å½“å‰èŠ‚ç‚¹æ‰€æœ‰å‡ºè¾¹ï¼ï¼ï¼
+            if (status[u] == 0) { // case1ï¼šè‹¥é‚»å±…ã€Œæœªæœç´¢ã€ï¼Œåˆ™DFSé€’å½’è®¿é—®è¯¥è·¯å¾„ï¼ï¼ï¼
                 dfs(u);
-            } else if (status[u] == 1) { // case2£ºÈôÁÚ¾Ó¡¸ËÑË÷ÖĞ¡¹£¬ÔòÍ¼ÖĞ´æÔÚ»·£¬²»´æÔÚÍØÆËÅÅĞò£¡£¡£¡
+            } else if (status[u] == 1) { // case2ï¼šè‹¥é‚»å±…ã€Œæœç´¢ä¸­ã€ï¼Œåˆ™å›¾ä¸­å­˜åœ¨ç¯ï¼Œä¸å­˜åœ¨æ‹“æ‰‘æ’åºï¼ï¼ï¼
                 loop = true;
                 return;
-            } // case3£ºÈôÁÚ¾Ó¡¸ÒÑÍê³É¡¹£¬ÔòÎŞĞèÔÙ·ÃÎÊ¸Ã½Úµã£¡£¡£¡
+            } // case3ï¼šè‹¥é‚»å±…ã€Œå·²å®Œæˆã€ï¼Œåˆ™æ— éœ€å†è®¿é—®è¯¥èŠ‚ç‚¹ï¼ï¼ï¼
         }
-        status[v] = 2; // ±ê¼Ç¡¸ÒÑÍê³É¡¹£¡£¡£¡
-        result[index--] = v; // ÄæĞòÌí¼Ó£¡£¡£¡
+        status[v] = 2; // æ ‡è®°ã€Œå·²å®Œæˆã€ï¼ï¼ï¼
+        result[index--] = v; // é€†åºæ·»åŠ ï¼ï¼ï¼
     }
 }
