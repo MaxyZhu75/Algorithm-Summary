@@ -1,42 +1,38 @@
-class Solution { // BFSÓĞÏòÍ¼ÍØÆËÅÅĞò£¡£¡£¡
-    List<List<Integer>> adjacent;
-    int[] indegree;
-    int[] result;
-    int index = 0;
-
+class Solution { // BFSæœ‰å‘å›¾æ‹“æ‰‘æ’åºï¼ï¼ï¼
     public int[] findOrder(int numCourses, int[][] prerequisites) { 
-		this.indegree = new int[numCourses]; // ´æ´¢Ã¿¸ö½ÚµãµÄÈë¶È£¡£¡£¡
-        this.result = new int[numCourses];
-		this.adjacent = new ArrayList<>(); // ´æ´¢ÓĞÏòÍ¼£¬´æ´¢ËùÓĞ½ÚµãµÄ³ö±ß£¨¼´ÁÚ½Ó±í£©£¡£¡£¡
+	int[] indegree = new int[numCourses]; // å­˜å‚¨æ¯ä¸ªèŠ‚ç‚¹çš„å…¥åº¦ï¼ï¼ï¼
+	List<List<Integer>> adjacent = new ArrayList<>(); // å­˜å‚¨æœ‰å‘å›¾ï¼Œå­˜å‚¨æ‰€æœ‰èŠ‚ç‚¹çš„å‡ºè¾¹ï¼ˆå³é‚»æ¥è¡¨ï¼‰ï¼ï¼ï¼
         for (int i=0; i<numCourses; i++) {
             adjacent.add(new ArrayList<Integer>());
         }
         for (int[] edge : prerequisites) {
-			adjacent.get(edge[1]).add(edge[0]); // ±¾Ìâ[u, v]±íÊ¾vÎªÏÈĞŞ¿Î£¬ÔòÍ¼ÖĞvÖ¸Ïòu£¡£¡£¡
+	    adjacent.get(edge[1]).add(edge[0]); // æœ¬é¢˜[u, v]è¡¨ç¤ºvä¸ºå…ˆä¿®è¯¾ï¼Œåˆ™å›¾ä¸­væŒ‡å‘uï¼ï¼ï¼
             indegree[edge[0]]++;
         }
 
         Deque<Integer> bfsQueue = new LinkedList<>();
-        for (int i=0; i<numCourses; i++) { // ½«ËùÓĞÈë¶ÈÎª0µÄ½Úµã·ÅÈë¶ÓÁĞÖĞ£»Èô¶ÓÁĞÈÔÎª¿ÕÔòÍ¼ÖĞ´æÔÚ»·£¬²»´æÔÚÍØÆËÅÅĞò£¡£¡£¡
+        for (int i=0; i<numCourses; i++) { // å°†æ‰€æœ‰å…¥åº¦ä¸º0çš„èŠ‚ç‚¹æ”¾å…¥é˜Ÿåˆ—ä¸­ï¼›è‹¥é˜Ÿåˆ—ä»ä¸ºç©ºåˆ™å›¾ä¸­å­˜åœ¨ç¯ï¼Œä¸å­˜åœ¨æ‹“æ‰‘æ’åºï¼ï¼ï¼
             if (indegree[i] == 0) {
                 bfsQueue.addLast(i);
             }
         }
-
+		
+	int[] result = new int[numCourses];
+	int index = 0;
         while (!bfsQueue.isEmpty()) {
-			int size = bfsQueue.size();
-			while (size-- > 0) {
-				int v = bfsQueue.poll();
-				result[index] = v;
-				index++;
-				for (int u : adjacent.get(v)) { // ±éÀúµ±Ç°½ÚµãËùÓĞ³ö±ß£¡£¡£¡
-					indegree[u]--;
-					if (indegree[u] == 0) { // ÁÚ¾Ó½Úµã½öµ±Èë¶ÈÎª0Ê±Ìí¼Ó£¨·ÀÖ¹ÖØ¸´Ìí¼Ó£©£¡£¡£¡
-						bfsQueue.addLast(u);
-					}
-				}
-			}
-        }
+	    int size = bfsQueue.size();
+	    while (size-- > 0) {
+	        int v = bfsQueue.poll();
+   		result[index] = v;
+		index++;
+		for (int u : adjacent.get(v)) { // éå†å½“å‰èŠ‚ç‚¹æ‰€æœ‰å‡ºè¾¹ï¼ï¼ï¼
+		    indegree[u]--;
+		    if (indegree[u] == 0) { // é‚»å±…èŠ‚ç‚¹ä»…å½“å…¥åº¦ä¸º0æ—¶æ·»åŠ ï¼ˆé˜²æ­¢é‡å¤æ·»åŠ ï¼‰ï¼ï¼ï¼
+		        bfsQueue.addLast(u);
+		    }
+	        }
+	    }
+      	}
 
         return (index == numCourses) ? result : new int[0];
     }
