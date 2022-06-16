@@ -1,26 +1,26 @@
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         int size = nums.length;
-        buildHeap(nums, size); // ÊÖËºĞ¡¶¥¶Ñ£¡£¡£¡
-        for (int i = nums.length-1; i >= k-1; i--) { // Í¨¹ı¾­µä¶ÑÅÅĞòÉ¾³ıµ½Ö»Ê£ÏÂk¸ö×î´óÖµ£¬È¡¶ÑµÄÄ©Î²ÔòµÃµ½µÚk´óµÄÖµ£¡£¡£¡
-            swap(nums, 0, i); // Ã¿´ÎÑ­»·Ê×ÏÈ½»»»¶Ñ¶¥×îĞ¡ÖµÓë¶Ñµ××î´óÖµ£¡£¡£¡
-            size--; // Ã¿´ÎÑ­»·ÓÃheapify¶Ôµ±Ç°numsÖØĞÂ¹¹½¨¸üĞ¡µÄ¶Ñ´ïµ½É¾³ıµÄÄ¿µÄ£¡£¡£¡
-            heapify(nums, 0, size);
+        buildHeap(nums, size); // æ‰‹æ’•å°é¡¶å †ï¼ï¼ï¼
+        for (int i = nums.length-1; i >= k-1; i--) { // é€šè¿‡n-kæ¬¡å¾ªç¯ï¼Œå°†åŸå°é¡¶å †ä¸­ç¬¬n-k+1ä¸ªå…ƒç´ ç§»è‡³å¤§å°ä¸ºkçš„å †çš„å †åº•ï¼ï¼ï¼
+            swap(nums, 0, i); // æ¯æ¬¡ä¸å½“å‰å †é¡¶æœ€å°å€¼äº¤æ¢ï¼ï¼ï¼
+            size--;
+            heapify(nums, 0, size); // å¿½ç•¥æœ«å°¾å…ƒç´ ï¼ˆè¢«äº¤æ¢ä¸‹æ¥çš„æœ€å°å€¼ï¼‰ï¼Œç”¨heapifyé‡æ–°æ„å»ºæ›´å°çš„å †ï¼ï¼ï¼
         }
         return nums[k-1];
     }
 
     public void buildHeap(int[] a, int size) {
-        for (int i = size/2; i>=0; i--) { // Òªµã1£ºÒÔi=size/2´«Èëheapify¼´ÓÉ×îºóÒ»¸öinternal node£¨·ÇÒ¶×Ó½Úµã»ò¸¸½Úµã£©¿ªÊ¼£¬bottom-upÓÉÏÂÍùÉÏ¹¹½¨£¡£¡£¡
+        for (int i = size/2; i>=0; i--) { // è¦ç‚¹1ï¼šä»¥i=size/2ä¼ å…¥heapifyå³ç”±æœ€åä¸€ä¸ªinternal nodeï¼ˆéå¶å­èŠ‚ç‚¹æˆ–çˆ¶èŠ‚ç‚¹ï¼‰å¼€å§‹ï¼Œbottom-upç”±ä¸‹å¾€ä¸Šæ„å»ºï¼ï¼ï¼
             heapify(a, i, size);
         } 
     }
 
     public void heapify(int[] a, int i, int size) {
-        int left = 2*i + 1; // Òªµã2£º¸¸½ÚµãµÄ×ó½áµãºÍÓÒ½áµãË÷ÒıÒª¼Ç×¡£¡£¡£¡
+        int left = 2*i + 1; // è¦ç‚¹2ï¼šçˆ¶èŠ‚ç‚¹çš„å·¦ç»“ç‚¹å’Œå³ç»“ç‚¹ç´¢å¼•è¦è®°ä½ï¼ï¼ï¼
         int right = 2*i + 2;
         int smallest = i;
-        if (left<size && a[left]<a[smallest]) { // Òªµã3£º¹¹½¨´ó¶¥¶ÑÊ±£¬±È½ÏºóÓë½Ï´óµÄ×Ó½Úµã½»»»£»¹¹½¨Ğ¡¶¥¶ÑÊ±£¬±È½ÏºóÓë½ÏĞ¡µÄ×Ó½Úµã½»»»£¡£¡£¡
+        if (left<size && a[left]<a[smallest]) { // è¦ç‚¹3ï¼šæ„å»ºå¤§é¡¶å †æ—¶ï¼Œæ¯”è¾ƒåä¸è¾ƒå¤§çš„å­èŠ‚ç‚¹äº¤æ¢ï¼›æ„å»ºå°é¡¶å †æ—¶ï¼Œæ¯”è¾ƒåä¸è¾ƒå°çš„å­èŠ‚ç‚¹äº¤æ¢ï¼ï¼ï¼
             smallest = left;
         } 
         if (right<size && a[right]<a[smallest]) {
@@ -28,7 +28,7 @@ class Solution {
         }
         if (smallest != i) {
             swap(a, i, smallest);
-            heapify(a, smallest, size); // Òªµã4£ºÈô½øĞĞÁËÉÏÊö½»»»²Ù×÷£¬ÔòÒª¶Ô¸Ã¸¸½ÚµãÎª¸ùµÄ×ÓÊ÷ÔÙ´ÎheapifyÀ´Î¬³Ö¶ÑµÄĞÔÖÊ£¡£¡£¡
+            heapify(a, smallest, size); // è¦ç‚¹4ï¼šè‹¥è¿›è¡Œäº†ä¸Šè¿°äº¤æ¢æ“ä½œï¼Œåˆ™è¦å¯¹è¯¥çˆ¶èŠ‚ç‚¹ä¸ºæ ¹çš„å­æ ‘å†æ¬¡heapifyæ¥ç»´æŒå †çš„æ€§è´¨ï¼ï¼ï¼
         }
     }
 
