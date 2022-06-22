@@ -16,29 +16,28 @@
 
 class Solution {
     int[] preorder;
-	int preorderIndex = 0;
+    int preorderIndex = 0;
     Map<Integer, Integer> inorderRecord = new HashMap<>();
     
-	public TreeNode buildTree(int[] preorder, int[] inorder) { // µÝ¹é½â¾ö£»Ç°Ðò¡¸¸ù×óÓÒ¡¹ÖÐÐò¡¸×ó¸ùÓÒ¡¹£¡£¡£¡
+    public TreeNode buildTree(int[] preorder, int[] inorder) { // é€’å½’è§£å†³ï¼›å‰åºã€Œæ ¹å·¦å³ã€ä¸­åºã€Œå·¦æ ¹å³ã€ï¼ï¼ï¼
         this.preorder = preorder;
-		for (int i=0; i<inorder.length; i++) { // ´æ´¢Ã¿¸öÔªËØÔÚÖÐÐò±éÀúÊý×éÖÐµÄË÷Òý£¡£¡£¡
+	for (int i=0; i<inorder.length; i++) { // å­˜å‚¨æ¯ä¸ªå…ƒç´ åœ¨ä¸­åºéåŽ†æ•°ç»„ä¸­çš„ç´¢å¼•ï¼ï¼ï¼
             inorderRecord.put(inorder[i], i);
         }
-
         return arrayToTree(0, preorder.length-1);
     }
 
     private TreeNode arrayToTree(int left, int right) {
-        if (left > right) return null; // ³ö¿Ú£º×ó±ß½ç´óÓÚÓÒ±ß½ç£¡£¡£¡
+        if (left > right) return null; // å‡ºå£ï¼šå·¦è¾¹ç•Œå¤§äºŽå³è¾¹ç•Œï¼ï¼ï¼
 		
-        int rootValue = preorder[preorderIndex]; // Step1£ºÇ°Ðò±éÀúÈ·¶¨¡¸¸ù¡¹£¡£¡£¡
-		preorderIndex++;
+        int rootValue = preorder[preorderIndex]; // Step1ï¼šå‰åºéåŽ†ç¡®å®šã€Œæ ¹ã€ï¼ï¼ï¼
+	preorderIndex++;
         TreeNode root = new TreeNode(rootValue);
 
-		int inorderIndex = inorderRecord.get(rootValue); // Step2£ºÖÐÐò±éÀúµÝ¹éÁ¬½Ó¸ùµÄ¡¸×óÓÒ×Ó½Úµã¡¹£¡£¡£¡
+	int inorderIndex = inorderRecord.get(rootValue); // Step2ï¼šä¸­åºéåŽ†é€’å½’è¿žæŽ¥æ ¹çš„ã€Œå·¦å³å­èŠ‚ç‚¹ã€ï¼ï¼ï¼
         root.left = arrayToTree(left, inorderIndex-1);
         root.right = arrayToTree(inorderIndex+1, right);
         
-		return root; // Ã¿´Î·µ»Øµ±Ç°¸ù½Úµã£¡£¡£¡
+	return root; // æ¯æ¬¡è¿”å›žå½“å‰æ ¹èŠ‚ç‚¹ï¼ï¼ï¼
     }
 }
