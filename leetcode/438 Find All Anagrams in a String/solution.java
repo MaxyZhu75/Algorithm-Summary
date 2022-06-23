@@ -1,23 +1,23 @@
 class Solution {
-	public List<Integer> findAnagrams(String s, String p) { // »¬¶¯´°¿Ú£¡£¡£¡
-		List<Integer> result = new ArrayList();
-		if (s.length() < p.length()) return result;
-		int [] pCount = new int[26];
-		int [] sCount = new int[26];
-		for (char c : p.toCharArray()) { // ´æ´¢¡¸p¡¹¸÷¸ö×ÖÄ¸µÄÊıÁ¿£¡£¡£¡
-			pCount[(int)(c-'a')]++;
-		}
-
-		int k = p.length();
-		for (int i=0; i<s.length(); i++) { // Í³¼Æ´óĞ¡Îª¡¸k¡¹µÄ»¬¶¯´°¿ÚÄÚ£¬¡¸s¡¹¸÷¸ö×ÖÄ¸µÄÊıÁ¿£¡£¡£¡
-			sCount[(int)(s.charAt(i)-'a')]++;
-			if (i >= k) {
-				sCount[(int)(s.charAt(i-k)-'a')]--;
-			}
-			if (Arrays.equals(pCount, sCount)) { // ±È½ÏÁ½Êı×éÄÚÈİÊÇ·ñÏàÍ¬¼´¿É£¡£¡£¡
-				result.add(i-k+1);
-			}
-		}
-		return result;
+    public List<Integer> findAnagrams(String s, String p) { // æ»‘åŠ¨çª—å£ï¼ï¼ï¼
+	List<Integer> result = new ArrayList<>();
+	if (s.length() < p.length()) return result;
+	int [] pCount = new int[26];
+	int [] sCount = new int[26];
+	for (char c : p.toCharArray()) { // å­˜å‚¨ã€Œpã€å„ä¸ªå­—æ¯çš„æ•°é‡ï¼ï¼ï¼
+	    pCount[(int)(c-'a')]++;
 	}
+
+	int k = p.length();
+	for (int i=0; i<s.length(); i++) { // ç»Ÿè®¡å¤§å°ä¸ºã€Œkã€çš„æ»‘åŠ¨çª—å£å†…ï¼Œã€Œsã€å„ä¸ªå­—æ¯çš„æ•°é‡ï¼ï¼ï¼
+	    sCount[(int)(s.charAt(i)-'a')]++;
+	    if (i >= k) {
+		sCount[(int)(s.charAt(i-k)-'a')]--;
+	    }
+   	    if (Arrays.equals(pCount, sCount)) { // æ¯”è¾ƒä¸¤æ•°ç»„å†…å®¹æ˜¯å¦ç›¸åŒå³å¯ï¼ï¼ï¼
+	        result.add(i-k+1);
+    	    }
+	}
+	return result;
+    }
 }
