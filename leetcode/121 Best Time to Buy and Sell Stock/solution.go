@@ -1,15 +1,15 @@
 func maxProfit(prices []int) int {
-    var n int = len(prices) // len()µÄÊ¹ÓÃ!!!
+    var n int = len(prices)
     if n==0 { 
         return 0
     }
-    var currentMin int = prices[0] // ³õÊ¼ÖµÎªµÚÒ»Ìì¹É¼Û!!!
+    var currentMin int = prices[0] // åˆå§‹å€¼ä¸ºç¬¬ä¸€å¤©è‚¡ä»·ï¼ï¼ï¼
     maxProfit := 0
     for i:=0; i<n; i++ {
         if prices[i] < currentMin {
-            currentMin = prices[i] // if-else ½á¹¹¼´ÂòÓëÂô£¬ÇÒÂú×ãÂòºÍÂô²»ÄÜÔÚÍ¬Ò»Ìì²Ù×÷µÄÌõ¼ş!!!
+            currentMin = prices[i] // if-else ç»“æ„å³ä¹°ä¸å–ï¼Œä¸”æ»¡è¶³ä¹°å’Œå–ä¸èƒ½åœ¨åŒä¸€å¤©æ“ä½œçš„æ¡ä»¶ï¼ï¼ï¼
         } else {
-            maxProfit = Max(maxProfit, prices[i]-currentMin) // ÕûĞÍµÄ×î´óÖµº¯ÊıÊÖ¶¯Ğ´!!!
+            maxProfit = Max(maxProfit, prices[i]-currentMin)
         }
     }
     return maxProfit
