@@ -1,14 +1,14 @@
 class Solution {
     public int maxProfit(int[] prices) {
         int n = prices.length;
-        if (n == 0) return 0; // ÓÃ==±È½Ï£¬ÈİÒ×Ğ´´íÎª=
-        int currentMin = prices[0]; // ³õÊ¼ÖµÎªµÚÒ»Ìì¹É¼Û!!!
+        if (n == 0) return 0;
+        int currentMin = prices[0]; // åˆå§‹å€¼ä¸ºç¬¬ä¸€å¤©è‚¡ä»·ï¼ï¼ï¼
         int maxProfit = 0;
         for(int i=0; i<n; i++){
             if( prices[i] < currentMin ) {
-                currentMin = prices[i]; // if-else ½á¹¹¼´ÂòÓëÂô£¬ÇÒÂú×ãÂòºÍÂô²»ÄÜÔÚÍ¬Ò»Ìì²Ù×÷µÄÌõ¼ş!!!
+                currentMin = prices[i]; // if-else ç»“æ„å³ä¹°ä¸å–ï¼Œä¸”æ»¡è¶³ä¹°å’Œå–ä¸èƒ½åœ¨åŒä¸€å¤©æ“ä½œçš„æ¡ä»¶ï¼ï¼ï¼
             } else {
-                maxProfit = Math.max(maxProfit, prices[i]-currentMin); // java.lang.Math!!!
+                maxProfit = Math.max(maxProfit, prices[i]-currentMin);
             }
         }
         return maxProfit;
