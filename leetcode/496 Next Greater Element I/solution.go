@@ -1,18 +1,19 @@
-func nextGreaterElement(nums1 []int, nums2 []int) []int { //¡¸µ¥µ÷Õ»¡¹½â¾ö¡¸×Ó¼¯ÏÂÒ»¸ö¸ü´óÔªËØÎÊÌâ¡¹£¡£¡£¡
-    hashRecord := make(map[int]int) // ¼ÇÂ¼ĞÎÊ½£º<nums2[i], ÓÒ±ßÏÂÒ»¸ö¸ü´óµÄÔªËØÖµ>£¡£¡£¡
+func nextGreaterElement(nums1 []int, nums2 []int) []int { //ã€Œå•è°ƒæ ˆã€è§£å†³ã€Œå­é›†ä¸‹ä¸€ä¸ªæ›´å¤§å…ƒç´ é—®é¢˜ã€ï¼ï¼ï¼
+    hashRecord := make(map[int]int) // è®°å½•å½¢å¼ï¼š<nums2[i], å³è¾¹ä¸‹ä¸€ä¸ªæ›´å¤§çš„å…ƒç´ å€¼>ï¼ï¼ï¼
     stack := []int{}
-    for i:=len(nums2)-1; i>=0; i-- { // µ¹Ğò±éÀúnums2£¡£¡£¡
-        for len(stack) > 0 && stack[len(stack)-1] <= nums2[i] { // ³öÕ»Ìõ¼ş£ºÕ»¶¥ÔªËØĞ¡ÓÚµÈÓÚµ±Ç°ÔªËØ£¨Î¬»¤µ¥µ÷Õ»£©£¡£¡£¡
+    for i:=len(nums2)-1; i>=0; i-- { //ã€Œåå‘ã€ï¼šä¸ºå·¦è¾¹æ–°æ¥çš„å…ƒç´ æ‰¾åˆ°å³ä¾§ç¬¬ä¸€ä¸ªæ›´å°çš„å…ƒç´ ï¼ï¼ï¼
+        for len(stack) > 0 && stack[len(stack)-1] <= nums2[i] {
             stack = stack[:len(stack)-1]
         }
-        if len(stack) > 0 { // Õ»Îª¿ÕËµÃ÷ÓÒ²àÃ»ÓĞ±Èµ±Ç°ÔªËØ¸ü´óµÄ£¡£¡£¡
+        if len(stack) > 0 { // æ ˆä¸ºç©ºè¯´æ˜å³ä¾§æ²¡æœ‰æ¯”å½“å‰å…ƒç´ æ›´å¤§çš„ï¼ï¼ï¼
             hashRecord[nums2[i]] = stack[len(stack)-1]
         } else {
-            hashRecord[nums2[i]] = -1;
+            hashRecord[nums2[i]] = -1; // æ³¨æ„é»˜è®¤ä¸º-1ï¼ï¼ï¼
         }
-        stack = append(stack, nums2[i]) // Ã¿´ÎĞèÒªÈëÕ»²Ù×÷£¡£¡
+        stack = append(stack, nums2[i])
     }
-    result := []int{}
+
+    result := []int{} // æ·»åŠ ç»“æœï¼ï¼ï¼
     for _, num := range nums1 {
         result = append(result, hashRecord[num])
     }
