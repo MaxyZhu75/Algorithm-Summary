@@ -1,15 +1,16 @@
 class Solution {
-    public int[] nextGreaterElement(int[] nums1, int[] nums2) { //¡¸µ¥µ÷Õ»¡¹½â¾ö¡¸×Ó¼¯ÏÂÒ»¸ö¸ü´óÔªËØÎÊÌâ¡¹£¡£¡£¡
-        Map<Integer, Integer> hashRecord = new HashMap<>(); // ¼ÇÂ¼ĞÎÊ½£º<nums2[i], ÓÒ±ßÏÂÒ»¸ö¸ü´óµÄÔªËØÖµ>£¡£¡£¡
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) { //ã€Œå•è°ƒæ ˆã€è§£å†³ã€Œå­é›†ä¸‹ä¸€ä¸ªæ›´å¤§å…ƒç´ é—®é¢˜ã€ï¼ï¼ï¼
+        Map<Integer, Integer> hashRecord = new HashMap<>(); // è®°å½•å½¢å¼ï¼š<nums2[i], å³è¾¹ä¸‹ä¸€ä¸ªæ›´å¤§çš„å…ƒç´ å€¼>ï¼ï¼ï¼
         Deque<Integer> stack = new ArrayDeque<>();
-        for (int i=nums2.length-1; i>=0; i--) { // µ¹Ğò±éÀúnums2£¡£¡£¡
-            while (!stack.isEmpty() && stack.peekFirst() <= nums2[i]) { // ³öÕ»Ìõ¼ş£ºÕ»¶¥ÔªËØĞ¡ÓÚµÈÓÚµ±Ç°ÔªËØ£¨Î¬»¤µ¥µ÷Õ»£©£¡£¡£¡
+        for (int i=nums2.length-1; i>=0; i--) { //ã€Œåå‘ã€ï¼šä¸ºå·¦è¾¹æ–°æ¥çš„å…ƒç´ æ‰¾åˆ°å³ä¾§ç¬¬ä¸€ä¸ªæ›´å°çš„å…ƒç´ ï¼ï¼ï¼
+            while (!stack.isEmpty() && nums2[i] >= stack.peekFirst()) {
                 stack.removeFirst();
             }
-            hashRecord.put(nums2[i], stack.isEmpty() ? -1 : stack.peekFirst()); // Õ»Îª¿ÕËµÃ÷ÓÒ²àÃ»ÓĞ±Èµ±Ç°ÔªËØ¸ü´óµÄ£¡£¡£¡
-            stack.addFirst(nums2[i]); // Ã¿´ÎĞèÒªÈëÕ»²Ù×÷£¡£¡£¡
+            hashRecord.put(nums2[i], stack.isEmpty() ? -1 : stack.peekFirst()); // æ³¨æ„é»˜è®¤ä¸º-1ï¼ï¼ï¼
+            stack.addFirst(nums2[i]); // æ¯æ¬¡éœ€è¦å…¥æ ˆæ“ä½œï¼ï¼ï¼
         }
-        int[] result = new int[nums1.length];
+
+        int[] result = new int[nums1.length]; // æ·»åŠ ç»“æœï¼ï¼ï¼
         for (int i=0; i<nums1.length; i++) {
             result[i] = hashRecord.get(nums1[i]);
         }
