@@ -1,35 +1,46 @@
 class Solution {
-    public int calculate(String s) { // Ê¹ÓÃÕ»½â¾ö£¡£¡£¡
+    public int calculate(String s) { // ç”¨é€’å½’ä¼˜å…ˆå¤„ç†æ‹¬å·å†…çš„å†…å®¹ï¼ï¼ï¼
+        int[] result = calculator(s, 0);
+        return result[0];
+    }
+
+    public int[] calculator(String s, int start) { // è¿”å›æ•°ç»„ï¼š[ç»“æœ, ç»“æŸä¸‹æ ‡]ï¼ï¼ï¼
         int n = s.length();
-        Deque<Integer> myStack = new ArrayDeque<>(); // Õ»¶¥ÔªËØ¼ÇÂ¼ÁËµ±Ç°Î»ÖÃËù´¦µÄÃ¿¸öÀ¨ºÅËù¡¸¹²Í¬ĞÎ³É¡¹µÄ·ûºÅ£¡£¡£¡
-        myStack.addFirst(1);
-        int sign = 1; // ¼ÇÂ¼µ±Ç°·ûºÅ£¡£¡£¡
-        int result = 0;
-        
-        int i = 0;
-        while (i < n) {
-            if (s.charAt(i) == ' ') { // case1£º¿Õ×Ö·ûÌø¹ı£¡£¡£¡
-                i++;
-            } else if (s.charAt(i) == '+') { // case2£º¼ÓºÅ£¬ÕıÈ·»ñÈ¡µ±Ç°¼ÆËã·ûºÅ£¡£¡£¡
-                sign = myStack.peekFirst();
-                i++;
-            } else if (s.charAt(i) == '-') { // case3£º¼õºÅ£¬ÕıÈ·»ñÈ¡µ±Ç°¼ÆËã·ûºÅ£¡£¡£¡
-                sign = -myStack.peekFirst();
-                i++;
-            } else if (s.charAt(i) == '(') { // case4£º×óÀ¨ºÅ£¬½«¸ÃÀ¨ºÅ×ÜµÄÔËËã·ûºÅÑ¹ÈëÕ»¶¥£¡£¡£¡
-                myStack.addFirst(sign);
-                i++;
-            } else if (s.charAt(i) == ')') { // case5£ºÓÒÀ¨ºÅ£¬½áÊøÊıÖµ¼ÆËã£¬½«¸ÃÀ¨ºÅ×ÜµÄÔËËã·ûºÅµ¯³öÕ»¶¥£¡£¡£¡
-                myStack.removeFirst();
-                i++;
-            } else { // case6£ºÊı×Ö¼ÆËã£¡£¡£¡
-                long num = 0;
-                while (i < n && Character.isDigit(s.charAt(i))) { // ×Ö·û´®×ªÊı×Ö´¦Àí£¡£¡£¡
-                    num = num * 10 + (s.charAt(i) - '0');
-                    i++;
-                }
-                result += sign * num;
+        int[] result = new int[2];
+        char preOprand = '+';
+        int num = 0;
+        Deque<Integer> stack = new LinkedList<>();
+
+        for (int i=start; i<n; i++) {
+            char letter = s.charAt(i);
+            if (Character.isDigit(letter)) {
+                num = num * 10 + letter - '0';
             }
+            if (letter == '(') { // ç»†èŠ‚ï¼šé‡è§å·¦æ‹¬å·åˆ™é€’å½’ï¼ï¼ï¼
+                int[] numNext = calculator(s, i+1);
+                num = numNext[0];
+                i = numNext[1];
+            }
+            if (i == n-1 || !Character.isDigit(letter) && letter != '(' && letter!= ' ') { // ç»†èŠ‚ï¼šç©ºæ ¼éœ€è¦åœ¨æ­¤å¤„å¤„ç†ï¼ï¼ï¼
+                switch (preOprand) {
+                    case '+': 
+					    stack.addFirst(num);
+						break;
+                    case '-':
+					    stack.addFirst(-num);
+						break;
+                }
+                if (letter == ')') { // ç»†èŠ‚ï¼šè®°å½•é€’å½’ç»“æŸä¸‹æ ‡ï¼Œä¸”breakï¼ï¼ï¼
+                    result[1] = i;
+                    break;
+                }
+                preOprand = letter;
+                num = 0;
+            }
+
+        }
+        while (!stack.isEmpty()) {
+            result[0] += stack.removeFirst();
         }
         return result;
     }
