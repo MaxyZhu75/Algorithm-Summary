@@ -1,15 +1,15 @@
-func calculate(s string) int { // ÀûÓÃStackÀ´Íê³É£»¼Ç×¡¸ÃÌâÌ×Â·£¡£¡£¡
+func calculate(s string) int {
     n := len(s)
-    preOperand := '+' // ×¢Òâ´æ´¢µÄÊÇÇ°Ò»¸ö²Ù×÷·û£¬²»ÊÇµ±Ç°µÄ£¡£¡£¡
-    digit := 0 // ´ı´¦ÀíÊı×Ö£¡£¡£¡
+    preOperand := '+'
+    digit := 0 // å¾…å¤„ç†æ•°å­—ï¼ï¼ï¼
     myStack := []int{}
     for i, letter := range s {
-        isDigit := (letter >= '0') && (letter <= '9') // case1£ºµ±Ç°×Ö·ûÎªÊı×Ö£»¼Ç×¡¸ÃÍ³¼ÆÊı×ÖµÄ²Ù×÷£¨Ì×Â·£©£¡£¡£¡
+        isDigit := (letter >= '0') && (letter <= '9') // å½“å‰å­—ç¬¦ä¸ºæ•°å­—ï¼›è®°ä½è¯¥ç»Ÿè®¡æ•°å­—çš„æ“ä½œï¼ˆå¥—è·¯ï¼‰ï¼ï¼ï¼
         if isDigit {
             digit = digit*10 + int(letter-'0')
         }
-        if !isDigit && letter != ' ' || i == n-1 { // case2£ºµ±Ç°×Ö·ûÎª²Ù×÷·û»ò×îºóÒ»Î»×Ö·û£¡£¡£¡
-            switch preOperand { // ×¢Òâ´Ë´¦ÊÇÔÚ¶ÔÇ°Ò»¸ö²Ù×÷·û¼°Êı×Ö½øĞĞÔËËã£¡£¡£¡
+        if !isDigit && letter != ' ' || i == n-1 { // å½“å‰å­—ç¬¦ä¸ºã€Œæ“ä½œç¬¦ã€æˆ–ã€Œæœ€åä¸€ä½ã€ï¼ï¼ï¼
+            switch preOperand { // æ³¨æ„æ­¤å¤„æ˜¯åœ¨å¯¹ã€Œå‰ä¸€ä¸ªæ“ä½œç¬¦ã€è¿›è¡Œè¿ç®—ï¼ï¼ï¼
                 case '+':
                     myStack = append(myStack, digit)
                 case '-':
@@ -19,13 +19,13 @@ func calculate(s string) int { // ÀûÓÃStackÀ´Íê³É£»¼Ç×¡¸ÃÌâÌ×Â·£¡£¡£¡
                 default:
                     myStack[len(myStack)-1] /= digit
             }
-        preOperand = letter // µ±Ç°²Ù×÷·û¼ÇÎªÇ°Ò»¸ö²Ù×÷·û£¬µÈ´ı´¦Àí£¡£¡£¡
-        digit = 0 // ´ı´¦ÀíÊı×Ö¹éÁã£¡£¡£¡
+        preOperand = letter
+        digit = 0 // å¾…å¤„ç†æ•°å­—ã€Œå½’é›¶ã€ï¼ï¼ï¼
         }
     }
 
     result := 0
-    for _, num := range myStack {
+    for _, num := range myStack { // æœ€åå¾ªç¯ç´¯åŠ æ ˆå†…ç»“æœï¼ï¼ï¼
         result += num
     }
     return result
