@@ -24,11 +24,11 @@ class Solution {
             if (i == n-1 || !Character.isDigit(letter) && letter != '(' && letter!= ' ') { // 细节：空格需要在此处处理！！！
                 switch (preOprand) {
                     case '+': 
-					    stack.addFirst(num);
-						break;
+		        stack.addFirst(num);
+			break;
                     case '-':
-					    stack.addFirst(-num);
-						break;
+       	                stack.addFirst(-num);
+			break;
                 }
                 if (letter == ')') { // 细节：记录递归结束下标，且break！！！
                     result[1] = i;
