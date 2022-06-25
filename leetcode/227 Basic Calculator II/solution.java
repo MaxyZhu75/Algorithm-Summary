@@ -1,36 +1,36 @@
 class Solution {
-    public int calculate(String s) { // ÀûÓÃStackÀ´Íê³É£»¼Ç×¡¸ÃÌâÌ×Â·£¡£¡£¡
+    public int calculate(String s) {
         int n = s.length();
-        int digit = 0; // ´ı´¦ÀíÊı×Ö£¡£¡£¡
-        char preOperand = '+'; // ×¢Òâ´æ´¢µÄÊÇÇ°Ò»¸ö²Ù×÷·û£¬²»ÊÇµ±Ç°µÄ£¡£¡£¡
-        Deque<Integer> myStack = new LinkedList<>(); // java.util.Deque£¡£¡£¡
+        int num = 0; // å¾…å¤„ç†æ•°å­—ï¼ï¼ï¼
+        char preOperand = '+';
+        Deque<Integer> myStack = new LinkedList<>();
         
         for (int i=0; i<n; i++) {
             char letter = s.charAt(i);
-            if (Character.isDigit(letter)) { // case1£ºµ±Ç°×Ö·ûÎªÊı×Ö£»¼Ç×¡¸ÃÍ³¼ÆÊı×ÖµÄ²Ù×÷£¨Ì×Â·£©£¡£¡£¡
-                digit = digit * 10 + letter - '0';
+            if (Character.isDigit(letter)) { // å½“å‰å­—ç¬¦ä¸ºæ•°å­—ï¼›è®°ä½è¯¥ç»Ÿè®¡æ•°å­—çš„æ“ä½œï¼ˆå¥—è·¯ï¼‰ï¼ï¼ï¼
+                num = num * 10 + letter - '0';
             }
-            if (!Character.isDigit(letter) && letter != ' ' || i == n-1) { // case2£ºµ±Ç°×Ö·ûÎª²Ù×÷·û»ò×îºóÒ»Î»×Ö·û£¡£¡£¡
-                switch (preOperand) { // ×¢Òâ´Ë´¦ÊÇÔÚ¶ÔÇ°Ò»¸ö²Ù×÷·û¼°Êı×Ö½øĞĞÔËËã£¡£¡£¡
+            if (!Character.isDigit(letter) && letter != ' ' || i == n-1) { // å½“å‰å­—ç¬¦ä¸ºã€Œæ“ä½œç¬¦ã€æˆ–ã€Œæœ€åä¸€ä½ã€ï¼ï¼ï¼
+                switch (preOperand) { // æ³¨æ„æ­¤å¤„æ˜¯åœ¨å¯¹ã€Œå‰ä¸€ä¸ªæ“ä½œç¬¦ã€è¿›è¡Œè¿ç®—ï¼ï¼ï¼
                     case '+':
-                        myStack.push(digit);
+                        myStack.push(num);
                         break;
                     case '-':
-                        myStack.push(-digit);
+                        myStack.push(-num);
                         break;
                     case '*':
-                        myStack.push(myStack.pop() * digit);
+                        myStack.push(myStack.pop() * num);
                         break;
                     default:
-                        myStack.push(myStack.pop() / digit);
+                        myStack.push(myStack.pop() / num);
                 }
-                preOperand = letter; // µ±Ç°²Ù×÷·û¼ÇÎªÇ°Ò»¸ö²Ù×÷·û£¬µÈ´ı´¦Àí£¡£¡£¡
-                digit = 0; // ´ı´¦ÀíÊı×Ö¹éÁã£¡£¡£¡
+                preOperand = letter;
+                num = 0; // å¾…å¤„ç†æ•°å­—ã€Œå½’é›¶ã€ï¼ï¼ï¼
             }
         }
 
         int result = 0;
-        while (!myStack.isEmpty()) {
+        while (!myStack.isEmpty()) { // æœ€åå¾ªç¯ç´¯åŠ æ ˆå†…ç»“æœï¼ï¼ï¼
             result += myStack.pop();
         }
         return result;
