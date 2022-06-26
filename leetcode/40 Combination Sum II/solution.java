@@ -1,13 +1,13 @@
 class Solution {
     List<List<Integer>> result = new ArrayList<>();    
-	List<Integer> current = new ArrayList<>();
-	int[] candidates;
+    List<Integer> current = new ArrayList<>();
+    int[] candidates;
     int[] visited;
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         this.candidates = candidates;
-		this.visited = new int[candidates.length];
-        Arrays.sort(candidates); // ½á¹ûÈ¥ÖØÏÈÅÅĞò£¡£¡£¡
+	this.visited = new int[candidates.length];
+        Arrays.sort(candidates); // ç»“æœå»é‡å…ˆæ’åºï¼ï¼ï¼
         dfsBackTracking(0, target);
         return result;
     }
@@ -21,12 +21,12 @@ class Solution {
             return;
         }
         for (int i=start; i<candidates.length; i++) {
-            if (visited[i]==1 || (i>0 && candidates[i]==candidates[i-1] && visited[i-1]==0)) { // ½á¹ûÈ¥ÖØÅĞ¶ÏÌõ¼ş£¡£¡£¡
+            if (visited[i]==1 || (i>0 && candidates[i]==candidates[i-1] && visited[i-1]==0)) { // ç»“æœå»é‡åˆ¤æ–­æ¡ä»¶ï¼ï¼ï¼
                 continue;
             }
-            visited[i] = 1; // Ã¿¸öÔªËØÖ»ÓÃÒ»´Î£¡£¡£¡
+            visited[i] = 1; // æ¯ä¸ªå…ƒç´ åªç”¨ä¸€æ¬¡ï¼ï¼ï¼
             current.add(candidates[i]);
-            dfsBackTracking(i+1, target-candidates[i]); // ÓÉÓÚ·µ»Ø×éºÏ£¬µİ¹éÊ±ĞèÒª´«ÈëÆğµã£¡£¡£¡
+            dfsBackTracking(i+1, target-candidates[i]); // ç”±äºè¿”å›ç»„åˆï¼Œé€’å½’æ—¶éœ€è¦ä¼ å…¥èµ·ç‚¹ï¼ï¼ï¼
             visited[i] = 0;
             current.remove(current.size()-1);
         }
