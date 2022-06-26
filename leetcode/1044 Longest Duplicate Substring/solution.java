@@ -1,44 +1,44 @@
-class Solution { //¡¸×Ö·û´®¹şÏ£¡¹+¡¸¶ş·Ö¡¹£¡£¡£¡
+class Solution { //ã€Œå­—ç¬¦ä¸²å“ˆå¸Œã€+ã€ŒäºŒåˆ†ã€ï¼ï¼ï¼
     long[] h;
-	long[] p;
+    long[] p;
 
     public String longestDupSubstring(String s) {
-        int P = 1313131; // ĞèÒª½Ï´óµÄÖÊÊı£¡£¡£¡
-		int n = s.length();
-        this.h = new long[n+10]; // ¹şÏ£Êı×éh[]£¡£¡£¡
-		this.p = new long[n+10]; // ´Î·½Êı×ép[]£¡£¡£¡
+        int P = 1313131; // éœ€è¦è¾ƒå¤§çš„è´¨æ•°ï¼ï¼ï¼
+	int n = s.length();
+        this.h = new long[n+10]; // å“ˆå¸Œæ•°ç»„h[]ï¼ï¼ï¼
+	this.p = new long[n+10]; // æ¬¡æ–¹æ•°ç»„p[]ï¼ï¼ï¼
         p[0] = 1;
-        for (int i=0; i<n; i++) { // °´¹«Ê½Ìî³äÊı×é£¡£¡£¡
+        for (int i=0; i<n; i++) { // æŒ‰å…¬å¼å¡«å……æ•°ç»„ï¼ï¼ï¼
             p[i+1] = p[i] * P;
             h[i+1] = h[i] * P + s.charAt(i);
         }
 
         String result = "";
-        int low = 0, high = n; // ÒÔ¡¸×î´ó³¤¶È¡¹Îª·Ö¸îµãµÄÊıÖá¾ßÓĞ¡¸¶ş¶ÎĞÔ¡¹£¡£¡£¡
+        int low = 0, high = n; // ä»¥ã€Œæœ€å¤§é•¿åº¦ã€ä¸ºåˆ†å‰²ç‚¹çš„æ•°è½´å…·æœ‰ã€ŒäºŒæ®µæ€§ã€ï¼ï¼ï¼
         while (low < high) {
-            int mid = high + low + 1 >> 1; // ´Ë´¦Ğ´³É³ı·¨Ê±¼ä»á³¬³öÏŞÖÆ£¡£¡£¡
+            int mid = high + low + 1 >> 1; // æ­¤å¤„å†™æˆé™¤æ³•æ—¶é—´ä¼šè¶…å‡ºé™åˆ¶ï¼ï¼ï¼
             String current = check(s, mid);
             if (current.length() != 0) {
-			    low = mid;
-			} else {
-			    high = mid - 1;	
-			}
+	        low = mid;
+	    } else {
+	        high = mid - 1;	
+	    }
             result = (current.length() > result.length()) ? current : result;
         }
         return result;
     }
 	
-    public String check(String s, int len) { // O(n)Ê±¼ä¼ì²éÄ³¸ö³¤¶È¡¸len¡¹×÷Îª×î´ó³¤¶È£¬ÊÇ·ñ´æÔÚºÏ·¨·½°¸£¡£¡£¡
+    public String check(String s, int len) { // O(n)æ—¶é—´æ£€æŸ¥æŸä¸ªé•¿åº¦ã€Œlenã€ä½œä¸ºæœ€å¤§é•¿åº¦ï¼Œæ˜¯å¦å­˜åœ¨åˆæ³•æ–¹æ¡ˆï¼ï¼ï¼
         int n = s.length();
         Set<Long> hashRecord = new HashSet<>();
         for (int i = 1; i+len-1 <= n; i++) {
             int j = i+len-1;
-            long hash = h[j] - h[i-1] * p[j-i+1]; // ÀûÓÃÇ°×ººÍË¼Ïë£¬Ê¹µÃÄÜ¹»O(1)Ê±¼ä»ñÈ¡¡¸×Ó´®s[i...j]µÄ¹şÏ£Öµ¡¹£¡£¡£¡
+            long hash = h[j] - h[i-1] * p[j-i+1]; // åˆ©ç”¨å‰ç¼€å’Œæ€æƒ³ï¼Œä½¿å¾—èƒ½å¤ŸO(1)æ—¶é—´è·å–ã€Œå­ä¸²s[i...j]çš„å“ˆå¸Œå€¼ã€ï¼ï¼ï¼
             if (hashRecord.contains(hash)) {
-			    return s.substring(i-1, j);
-			} else {
-			    hashRecord.add(hash);	
-			}
+	        return s.substring(i-1, j);
+	    } else {
+	        hashRecord.add(hash);	
+	    }
         }
         return "";
     }
