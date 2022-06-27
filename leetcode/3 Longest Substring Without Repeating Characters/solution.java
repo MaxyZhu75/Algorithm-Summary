@@ -1,5 +1,5 @@
 class Solution {
-    public int lengthOfLongestSubstring(String s) { // 滑动窗口虫取法！！！
+    public int lengthOfLongestSubstring(String s) {  // 婊戝姩绐楀彛铏彇娉曪紒锛侊紒
         Map<Character, Integer> hashRecord = new HashMap<>();
         int left = 0, right = 0;
         while (right < s.length()) {
