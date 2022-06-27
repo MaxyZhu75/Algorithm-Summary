@@ -1,4 +1,4 @@
-func lengthOfLongestSubstring(s string) int {
+func lengthOfLongestSubstring(s string) int { // 滑动窗口虫取法！！！
     hashRecord := make(map[byte]int)
     left, right := 0, 0
     for right < len(s) {
