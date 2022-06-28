@@ -1,18 +1,16 @@
-func intersect(nums1 []int, nums2 []int) []int { // ·½·¨¶ş£ºË«Ö¸Õë£¡£¡£¡
-    sort.Ints(nums1) // ½ø½×ÎÊÌâ£º¼ÙÉèÒÑÅÅĞò£¡£¡£¡
+func intersect(nums1 []int, nums2 []int) []int { // æ–¹æ³•äºŒï¼šåŒæŒ‡é’ˆï¼ï¼ï¼
+    sort.Ints(nums1)
     sort.Ints(nums2)
-    m, n := len(nums1), len(nums2)
-    p1, p2 := 0, 0
-
     result := []int{}
-    for p1 < m && p2 < n {
-        if nums1[p1] < nums2[p2] { //¡¸ËùÖ¸ÔªËØ½ÏĞ¡µÄÖ¸Õë¡¹ĞèÒªÒÆ¶¯£¡£¡£¡
-            p1++
-        } else if nums1[p1] > nums2[p2] {
-            p2++
-        } else {
+    p1, p2 := 0, 0
+    for p1 < len(nums1) && p2 < len(nums2) {
+        if nums1[p1] == nums2[p2] { // case1ï¼šæ‰€æŒ‡å…ƒç´ ç›¸ç­‰ï¼ï¼ï¼ï¼
             result = append(result, nums1[p1])
             p1++
+            p2++
+        } else if nums1[p1] < nums2[p2] { // case2ï¼šp1æ‰€æŒ‡å…ƒç´ æ›´å°ï¼ï¼ï¼
+            p1++
+        } else { // case3ï¼šp2æ‰€æŒ‡å…ƒç´ æ›´å°ï¼ï¼ï¼
             p2++
         }
     }
