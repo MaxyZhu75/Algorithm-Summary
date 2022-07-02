@@ -13,20 +13,21 @@
  *     }
  * }
  */
+
 class Solution {
-    public List<Integer> preorderTraversal(TreeNode root) { // ·½·¨Ò»£ºµü´ú£¨µİ¹é·½·¨¼ûGoÓïÑÔ´ğ°¸£©£¡£¡£¡
-        List<Integer> result = new ArrayList<>(); // Ç°Ğò±éÀú£º¸ù×óÓÒ£¡£¡£¡
+    public List<Integer> preorderTraversal(TreeNode root) { // æ–¹æ³•ä¸€ï¼šè¿­ä»£ï¼ˆé€’å½’æ–¹æ³•è§Goè¯­è¨€ç­”æ¡ˆï¼‰ï¼ï¼ï¼
+        List<Integer> result = new ArrayList<>(); // å‰åºéå†ï¼šæ ¹å·¦å³ï¼ï¼ï¼
         if (root == null) return result;
 
-        Stack<TreeNode> myStack = new Stack<>(); // Òªµã£ºimport java.util.Stack£»µü´ú·½·¨ĞèÒªÕ»stackÀ´¸¨Öú£¡£¡£¡
-        myStack.push(root);
+        Deque<TreeNode> myStack = new ArrayDeque<>(); // è¦ç‚¹ï¼šimport java.util.Stackï¼›è¿­ä»£æ–¹æ³•éœ€è¦æ ˆstackæ¥è¾…åŠ©ï¼ï¼ï¼
+        myStack.addFirst(root);
 
-        TreeNode currentNode = null;
-        while (!myStack.isEmpty()) { // Õ»ÏÈ½øºó³ö£¬ÈëÕ»Ê±ÏÈÓÒºó×óÔò¿É±£Ö¤ÏÈ´¦Àí×ó±ßµÄ½Úµã£¡£¡£¡
-            currentNode = myStack.pop();
-            result.add(currentNode.val);
-            if (currentNode.right != null) myStack.push(currentNode.right);
-            if (currentNode.left != null) myStack.push(currentNode.left);
+        TreeNode current = null;
+        while (!myStack.isEmpty()) { // æ ˆå…ˆè¿›åå‡ºï¼Œå…¥æ ˆæ—¶å…ˆå³åå·¦åˆ™å¯ä¿è¯å…ˆå¤„ç†å·¦è¾¹çš„èŠ‚ç‚¹ï¼ï¼ï¼
+            current = myStack.removeFirst();
+            result.add(current.val);
+            if (current.right != null) myStack.removeFirst(current.right);
+            if (current.left != null) myStack.removeFirst(current.left);
         }       
         return result;
     }
