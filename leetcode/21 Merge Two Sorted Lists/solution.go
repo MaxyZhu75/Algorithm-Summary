@@ -5,20 +5,21 @@
  *     Next *ListNode
  * }
  */
+
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-    if list1 == nil {  // ×óÓÒ±ß½ç£¡£¡£¡
+    if list1 == nil {  // å·¦å³è¾¹ç•Œï¼ï¼ï¼
         return list2
     }
     if list2 == nil {
         return list1
     }
-    var mergedList *ListNode = nil  // ¶¨ÒåĞÂµÄºÏ²¢ºóµÄÁ´±í£¡£¡£¡
-    if list1.Val < list2.Val {  // ×¢ÒâListNode¿ÉÒÔÊÓ×÷Ö¸ÕëÖ¸µÄÊ×µØÖ·ÄÚÈİ£¡£¡£¡
-        mergedList = list1  // ¸ù¾İ²»Í¬Çé¿ö³õÊ¼»¯£¡£¡£¡
-        mergedList.Next = mergeTwoLists(list1.Next, list2)  // recursion£¡£¡£¡
+    var current *ListNode = nil
+    if list1.Val < list2.Val {
+        current = list1
+        current.Next = mergeTwoLists(list1.Next, list2)  // recursionï¼ï¼ï¼
     } else {
-        mergedList = list2
-        mergedList.Next = mergeTwoLists(list1, list2.Next)
+        current = list2
+        current.Next = mergeTwoLists(list1, list2.Next)
     }
-    return mergedList
+    return current
 }
