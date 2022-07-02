@@ -26,8 +26,8 @@ class Solution {
         while (!myStack.isEmpty()) { // 栈先进后出，入栈时先右后左则可保证先处理左边的节点！！！
             current = myStack.removeFirst();
             result.add(current.val);
-            if (current.right != null) myStack.removeFirst(current.right);
-            if (current.left != null) myStack.removeFirst(current.left);
+            if (current.right != null) myStack.addFirst(current.right);
+            if (current.left != null) myStack.addFirst(current.left);
         }       
         return result;
     }
