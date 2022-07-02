@@ -8,18 +8,19 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null) return list2; // ×óÓÒ±ß½ç£¡£¡£¡
+        if (list1 == null) return list2; // å·¦å³è¾¹ç•Œï¼ï¼ï¼
         if (list2 == null) return list1;        
-        ListNode mergedList = new ListNode(); // ¶¨ÒåĞÂµÄºÏ²¢ºóµÄÁ´±í£¡£¡£¡
-        if (list1.val < list2.val) { // ×¢ÒâListNode¿ÉÒÔÊÓ×÷Ö¸ÕëÖ¸µÄÊ×µØÖ·ÄÚÈİ£¡£¡£¡
-            mergedList = list1; // ¸ù¾İ²»Í¬Çé¿ö³õÊ¼»¯£¡£¡£¡
-            mergedList.next = mergeTwoLists(list1.next, list2); // recursion£¡£¡£¡
+        ListNode current = new ListNode();
+        if (list1.val < list2.val) {
+            current = list1;
+            current.next = mergeTwoLists(list1.next, list2); // recursionï¼ï¼ï¼
         } else {
-            mergedList = list2;
-            mergedList.next = mergeTwoLists(list1, list2.next);          
+            current = list2;
+            current.next = mergeTwoLists(list1, list2.next);          
         }
-        return mergedList;
+        return current;
     }
 }
