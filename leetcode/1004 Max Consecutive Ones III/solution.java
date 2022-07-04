@@ -1,5 +1,5 @@
 class Solution {
-    public int longestOnes(int[] nums, int k) { // 滑动窗口虫取法！！！
+    public int longestOnes(int[] nums, int k) { // 婊戝姩绐楀彛铏彇娉曪紒锛侊紒
         int zero = 0;
         int left = 0, right = 0;
         while (right < nums.length) {
