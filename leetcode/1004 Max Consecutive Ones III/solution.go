@@ -1,4 +1,4 @@
-func longestOnes(nums []int, k int) int { // 滑动窗口虫取法！！！
+func longestOnes(nums []int, k int) int { // 婊戝姩绐楀彛铏彇娉曪紒锛侊紒
     zero := 0
     left, right := 0, 0
     for right < len(nums) {
