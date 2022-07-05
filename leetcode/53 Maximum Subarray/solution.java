@@ -1,9 +1,9 @@
 class Solution {
-    public int maxSubArray(int[] nums) { // ¶¯Ì¬¹æ»®¿Õ¼äÓÅ»¯°æ£»ÁíÍâ¹Ù·½½â´ğÓĞ·ÖÖÎ½â·¨£¡£¡£¡
+    public int maxSubArray(int[] nums) { // åŠ¨æ€è§„åˆ’ç©ºé—´ä¼˜åŒ–ç‰ˆï¼›å¦å¤–å®˜æ–¹è§£ç­”æœ‰åˆ†æ²»è§£æ³•ï¼ï¼ï¼
         int current = 0;
         int max = nums[0];
-        for (int num : nums) { // ´Ë´¦Âß¼­Îª£ºÈôcurrent+numĞ¡ÓÚnum£¬ËµÃ÷´ËÇ°×î´ó×Ó´®Ö®ºÍcurrentÎª¸ºÊı£¬ÔòÖ±½ÓŞğÆúnumÖ®Ç°µÄÊıÊ¹currentµÈÓÚnum£¡£¡£¡
-            current = Math.max(current+num, num); // d[i] = max(d[i?1]+nums[i], nums[i])£¡£¡£¡
+        for (int num : nums) { // æ­¤å¤„é€»è¾‘ä¸ºï¼šè‹¥current+numå°äºnumï¼Œè¯´æ˜æ­¤å‰æœ€å¤§å­ä¸²ä¹‹å’Œcurrentä¸ºè´Ÿæ•°ï¼Œåˆ™ç›´æ¥æ‘’å¼ƒnumä¹‹å‰çš„æ•°ä½¿currentç­‰äºnumï¼ï¼ï¼
+            current = Math.max(current+num, num); // d[i] = max(d[i-1]+nums[i], nums[i])ï¼ï¼ï¼
             max = Math.max(max, current);
         }
         return max;
