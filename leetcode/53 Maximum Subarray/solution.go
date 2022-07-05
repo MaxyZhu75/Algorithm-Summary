@@ -1,7 +1,7 @@
-func maxSubArray(nums []int) int { // ¶¯Ì¬¹æ»®¿Õ¼äÓÅ»¯°æ£»ÁíÍâ¹Ù·½½â´ğÓĞ·ÖÖÎ½â·¨£¡£¡£¡
+func maxSubArray(nums []int) int { // åŠ¨æ€è§„åˆ’ç©ºé—´ä¼˜åŒ–ç‰ˆï¼›å¦å¤–å®˜æ–¹è§£ç­”æœ‰åˆ†æ²»è§£æ³•ï¼ï¼ï¼
     current, max := 0, nums[0]
-    for _, num := range nums { // ´Ë´¦Âß¼­Îª£ºÈôcurrent+numĞ¡ÓÚnum£¬ËµÃ÷´ËÇ°×î´ó×Ó´®Ö®ºÍcurrentÎª¸ºÊı£¬ÔòÖ±½ÓŞğÆúnumÖ®Ç°µÄÊıÊ¹currentµÈÓÚnum£¡£¡£¡
-        current = maxInt(current+num, num) // d[i] = max(d[i?1]+nums[i], nums[i])£¡£¡£¡
+    for _, num := range nums { // æ­¤å¤„é€»è¾‘ä¸ºï¼šè‹¥current+numå°äºnumï¼Œè¯´æ˜æ­¤å‰æœ€å¤§å­ä¸²ä¹‹å’Œcurrentä¸ºè´Ÿæ•°ï¼Œåˆ™ç›´æ¥æ‘’å¼ƒnumä¹‹å‰çš„æ•°ä½¿currentç­‰äºnumï¼ï¼ï¼
+        current = maxInt(current+num, num) // d[i] = max(d[i-1]+nums[i], nums[i])ï¼ï¼ï¼
         max = maxInt(max, current)
     }
     return max
