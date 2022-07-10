@@ -2,17 +2,17 @@ class Solution {
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
         int result = 1;
-        int[] d = new int[n+1];
-        d[0] = 0; // basecase£¡£¡£¡
+        int[] d = new int[n+1]; // d[i]ä»£è¡¨æ•°ç»„ä»¥nums[i-1]ç»“å°¾çš„æœ€é•¿ä¸Šå‡å­åºåˆ—ï¼ï¼ï¼
+        d[0] = 0;
         d[1] = 1;
-        for (int i=2; i<n+1; i++) { // Íâ²ã£º½«dp±íÃ¿Ò»¸ñÌîÍê£¡£¡£¡
-            d[i] = 1; // basecaseÈ«¶¼ÖÃÎª1£¡£¡£¡
-            for (int j=1; j<i; j++) { // ÄÚ²ã£ºÌîÄ³Ò»¸ñÊ±±éÀúËùÓĞÇé¿ö£¡£¡£¡
+        for (int i=2; i<n+1; i++) {
+            d[i] = 1; // è®¡æ•°è‡³å°‘åŒ…å«å…ƒç´ æœ¬èº«ï¼ï¼ï¼
+            for (int j=1; j<i; j++) { // ä»¥nums[i-1]ä¸ºç»“å°¾ï¼Œå¾€å·¦æ‰¾ï¼ï¼ï¼
                 if (nums[i-1] > nums[i-1-j]) {
-                    d[i] = Math.max(d[i], d[i-j]+1);
+                    d[i] = Math.max(d[i], d[i-j]+1); // ç»†èŠ‚ï¼šå¯¹æ¯”å½“å‰ç»“æœä¸ä»nums[i-1-j]è·³è½¬è¿‡æ¥çš„ç»“æœï¼ï¼ï¼
                 }
             }
-            result = Math.max(result, d[i]); // ¸üĞÂµ±Ç°dp±íÖĞ×î´ó³¤¶È×ÓĞòÁĞ£¡£¡£¡
+            result = Math.max(result, d[i]);
         }
         return result;
     }
