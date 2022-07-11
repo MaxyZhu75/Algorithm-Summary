@@ -1,29 +1,28 @@
-class Solution { // »ØËİ¾­µäÌâÄ¿£¬»ØËİÊôÓÚDFSÎÊÌâ£¬ĞèÒªÍ³¼ÆÅÅÁĞ×éºÏµÄ¸÷ÖÖÇé¿öÊ±¿ÉÓÃ»ØËİ½â¾ö£¡£¡£¡
+class Solution {
     List<String> result = new ArrayList<>(); 
-    StringBuilder sb = new StringBuilder(); // ÒªµãÒ»£º¿É½«½á¹û±äÁ¿µÈÌáÇ°ÉùÃ÷£¡£¡£¡
-    String[] letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-	
+    StringBuilder sb = new StringBuilder();
+    String[] dictionary = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}; // å­—å…¸æ˜ å°„ï¼ï¼ï¼
+	String digits;
+
     public List<String> letterCombinations(String digits) {
-        if (digits.length() == 0) {
-            return result;
-        }
-        dfsBackTrack(digits);
+        this.digits = digits;
+        if (digits.length() == 0) return result;
+        dfsBackTrack(0);
         return result;
     }
 
-    public void dfsBackTrack(String digits) { // ÎŞ·µ»ØÖµ£¬Ö±½Ó¶Ô¶¨ÒåµÄ½á¹û±äÁ¿²Ù×÷£¡£¡£¡
-        if (sb.length() == digits.length()) { // µİ¹é×óÓÒ³ö¿Ú£¡£¡£¡
+    public void dfsBackTrack(int start) { // æ±‚çš„æ˜¯ç»„åˆï¼ï¼ï¼
+        if (sb.length() == digits.length()) {
             result.add(sb.toString());
             return;
         }
-        
-        int position = sb.length(); // ×îºóÉ¾³ıÄ©Î²×ÖÄ¸Ê±²»ÄÜÓÃposition±äÁ¿À´±íÊ¾sb.length()£¬ÒòÎªµİ¹éºóµÄ±äÁ¿º¬ÒåÒÑ¾­²»Ò»Ñù£¬ÕâÒ»µãÒªĞ¡ĞÄ£¡£¡£¡
-        int currentDigit = digits.charAt(position) - '0';
-        String currentLetters = letters[currentDigit];
-        for (char letter : currentLetters.toCharArray()) { // Òªµã¶ş£ºDFSÒÆ¶¯¹ı³ÌÖĞ°üÀ¨Èı¸öÖØÒª´¦Àí²½Öè£¬ÇÒ±ØĞë°´Ë³ĞòÖ´ĞĞ£¡£¡£¡
-            sb.append(letter); // ´¦ÀíÒ»£º±ê¼ÇÒÑ·ÃÎÊ£»±¾ÌâÖ÷ÒªÓÉsb.length()¿ØÖÆ£¬Ìí¼Ó×ÖÄ¸ºósb³¤¶È¸Ä±ä£¬Ïàµ±ÓÚ±ê¼Ç·ÃÎÊ£¡£¡£¡
-            dfsBackTrack(digits); // ´¦Àí¶ş£ºdfsÍùÏÂµİ¹é£¡£¡£¡
-            sb.deleteCharAt(sb.length()-1); // ´¦ÀíÈı£º±ê¼ÇÎ´·ÃÎÊ£»±¾ÌâÖ÷ÒªÓÉsb.length()¿ØÖÆ£¬É¾³ı×îºóÒ»¸ö×ÖÄ¸ºósb³¤¶È¸Ä±ä£¬Ïàµ±ÓÚ±ê¼ÇÎ´·ÃÎÊ£¡£¡£¡
+        for (int i=start; i<digits.length(); i++) {
+            String letters = dictionary[digits.charAt(i)-'0'];
+            for (char letter : letters.toCharArray()) {
+                sb.append(letter);
+                dfsBackTrack(i+1);
+                sb.deleteCharAt(sb.length()-1);
+            }
         }
     }
 }
