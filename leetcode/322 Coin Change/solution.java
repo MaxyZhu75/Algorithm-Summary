@@ -1,12 +1,12 @@
 public class Solution {
-    public int coinChange(int[] coins, int amount) { // ¾­µä¶¯Ì¬¹æ»®ÎÊÌâ£¡£¡£¡
-        int[] d = new int[amount+1]; // d[i]±íÊ¾×é³É½ğ¶îiËùĞè×îÉÙµÄÓ²±ÒÊıÁ¿£¡£¡£¡
+    public int coinChange(int[] coins, int amount) { // ç»å…¸åŠ¨æ€è§„åˆ’é—®é¢˜ï¼ï¼ï¼
+        int[] d = new int[amount+1]; // d[i]è¡¨ç¤ºç»„æˆé‡‘é¢iæ‰€éœ€æœ€å°‘çš„ç¡¬å¸æ•°é‡ï¼ï¼ï¼
         Arrays.fill(d, amount+1);
         d[0] = 0;
         for (int i=1; i<=amount; i++) {
             for (int j=0; j<coins.length; j++) {
                 if (coins[j] <= i) {
-                    d[i] = Math.min(d[i], d[i-coins[j]]+1);; // ×ªÒÆ·½³Ì£ºd[i] = min{d[i]...d[i-coins[j]]+1} £¡£¡£¡
+                    d[i] = Math.min(d[i], d[i-coins[j]]+1); // è½¬ç§»æ–¹ç¨‹ï¼šd[i] = min{d[i]...d[i-coins[j]]+1} ï¼ï¼ï¼
                 }
             }
         }
