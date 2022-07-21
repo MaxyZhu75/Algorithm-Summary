@@ -11,7 +11,7 @@ public class Solution {
                 for (int i=0; i<endWord.length(); i++) {
                     for (char letter='a'; letter<='z'; letter++) {
                         StringBuilder sb = new StringBuilder(current);
-                        sb.setCharAt(i, letter); // 每个位置尝试替换不同单词！！！
+                        sb.setCharAt(i, letter); // 每个位置尝试替换不同字母！！！
                         if (hashRecord.contains(sb.toString())) {
                             if (sb.toString().equals(endWord)) {
 				return step+1;	
