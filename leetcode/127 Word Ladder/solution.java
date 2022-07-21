@@ -1,48 +1,29 @@
 public class Solution {
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) { // BFS×î¶ÌÂ·¾¶ÎÊÌâ£»ÓÅ»¯°æË«ÏòBFS¼û¹Ù·½½â´ğ£¡£¡£¡
-        Set<String> hashRecord = new HashSet<>(wordList); // ½«wordList·Åµ½¹şÏ£ÁĞ±íÖĞ£¡£¡£¡
-        if (!hashRecord.contains(endWord)) return 0;
-        hashRecord.remove(beginWord); // ´Ó¹şÏ£±íÖĞÒÆ³ıbeginWord£¡£¡£¡
-        
-        Deque<String> bfsQueue = new LinkedList<>(); // ´´½¨³£¹æBFSËùĞèµÄ¶ÓÁĞ¼°·ÃÎÊÊı×é£¡£¡£¡
-        bfsQueue.addLast(beginWord);
-        Set<String> visited = new HashSet<>();
-        visited.add(beginWord);
-
-        int step = 0;
-        while (!bfsQueue.isEmpty()) { // BFSÑ­»·£¡£¡£¡
-            step++;
-			int currentSize = bfsQueue.size();
-            while (currentSize-- > 0) {
-                String currentWord = bfsQueue.pollFirst();
-                if (isFinalStep(currentWord, endWord, bfsQueue, visited, hashRecord)) {
-                    return step+1; // Èç¹ûcurrentWordÄÜ¹»Í¨¹ıĞŞ¸Ä1¸ö×Ö·ûÓëendWordÏàÍ¬£¬ÔòÎªBFS×îºóÒ»²½£¬·µ»Østep+1¼´¿É£¡£¡£¡
-                }
-            }
-        }
-        return 0;
-    }
-
-    private boolean isFinalStep(String word, String target, Deque<String> bfsQueue, Set<String> visited, Set<String> hashRecord) {
-        char[] letters = word.toCharArray();
-        char original = letters[0]; // ÓÃÓÚ±£´æÔ­×Ö·û£¬ÒÔ±ãÓÚĞŞ¸Äºó»Ö¸´£¡£¡£¡
-		for (int i=0; i<target.length(); i++) {
-            original = letters[i];
-            for (char modified = 'a'; modified <= 'z'; modified++) { // ³¢ÊÔĞŞ¸Ä¸Ã×Ö·û£¨25ÖÖ¿ÉÄÜ£©£¡£¡£¡
-                if (modified == original) continue;
-                letters[i] = modified;
-                String modifiedWord = String.valueOf(letters);
-                if (hashRecord.contains(modifiedWord)) {
-                    if (modifiedWord.equals(target)) { // case1£ºmodifiedWordµÈÓÚendWord£¬BFSµ½´ïÖÕµã£¡£¡£¡
-                        return true;
-                    } else if (!visited.contains(modifiedWord)) { // case2£ºmodifiedWord²»µÈÓÚendWord£¬Ôò½«¸Ãµ¥´Ê¼ÓÈë¶ÓÁĞÒÔ±ãÓÚBFSµÄÏÂÒ»²ã·ÃÎÊ£¬²¢ÇÒÁ¢¼´±ê¼ÇÒÑ·ÃÎÊ£¡£¡£¡
-                        bfsQueue.addLast(modifiedWord);
-                        visited.add(modifiedWord);
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) { // BFSï¼ï¼ï¼
+        Set<String> hashRecord = new HashSet<>(wordList);
+        Queue<String> bfsQueue = new LinkedList<>();
+        bfsQueue.offer(beginWord);
+        int step = 1;
+        while (!bfsQueue.isEmpty()) {
+            int size = bfsQueue.size();
+            while (size-- > 0) {
+                String current = bfsQueue.poll();
+                for (int i=0; i<endWord.length(); i++) {
+                    for (char letter='a'; letter<='z'; letter++) {
+                        StringBuilder sb = new StringBuilder(current);
+                        sb.setCharAt(i, letter); // æ¯ä¸ªä½ç½®å°è¯•æ›¿æ¢ä¸åŒå•è¯ï¼ï¼ï¼
+                        if (hashRecord.contains(sb.toString())) {
+                            if (sb.toString().equals(endWord)) {
+							    return step+1;	
+							}
+                            hashRecord.remove(sb.toString()); // ä»HashSetä¸­ç§»é™¤å½“å‰newWordï¼ï¼ï¼
+                            bfsQueue.offer(sb.toString()); // bfsé˜Ÿåˆ—å…¥é˜Ÿå½“å‰newWordï¼ï¼ï¼
+                        }
                     }
                 }
             }
-            letters[i] = original; // »Ö¸´Ô­µ¥´Ê£¡£¡£¡
+            step++;
         }
-        return false;
+        return 0;
     }
 }
