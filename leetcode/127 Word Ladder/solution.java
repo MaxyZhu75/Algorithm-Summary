@@ -14,8 +14,8 @@ public class Solution {
                         sb.setCharAt(i, letter); // 每个位置尝试替换不同单词！！！
                         if (hashRecord.contains(sb.toString())) {
                             if (sb.toString().equals(endWord)) {
-							    return step+1;	
-							}
+				return step+1;	
+	  	            }
                             hashRecord.remove(sb.toString()); // 从HashSet中移除当前newWord！！！
                             bfsQueue.offer(sb.toString()); // bfs队列入队当前newWord！！！
                         }
