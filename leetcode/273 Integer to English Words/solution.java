@@ -1,39 +1,27 @@
-class Solution { // ×¢ÒâË÷ÒýÓëÔªËØ¶ÔÓÚ¸ü·½±ãµ÷ÓÃ£¡£¡£¡
-    String[] singles = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
-    String[] teens = {"Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    String[] tens = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-    String[] units = {"", "Thousand", "Million", "Billion"};
+class Solution {
+	private final String[] LESS_THAN_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+	private final String[] TENS = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
-    public String numberToWords(int num) { // µÝ¹é½â¾ö£¡£¡£¡
-        if (num == 0) return "Zero";
-        StringBuilder sb = new StringBuilder();
-        int unit = 1000000000; // Ó¢ÎÄÖÐ3Î»Êý×ÖÎªÒ»×é£»32Î»intÀàÐÍÊý×Ö×î¶àÓÐ10Î»Êý×Ö£¬¼´3×é£¡£¡£¡
-		for (int i=3; i >= 0; i--) { // ÓÉ´óµ½Ð¡°´×éÌí¼Óµ½½á¹ûµ±ÖÐ£¡£¡£¡
-            int current = num / unit;
-            if (current != 0) {
-                num -= current * unit; // Ä¨È¥ÒÑ´¦ÀíµÄ¸ßÎ»Êý×ÖÓÃ¼õ·¨£¡£¡£¡
-                StringBuilder group = new StringBuilder();
-                recursion(group, current);
-                group.append(units[i]).append(" "); // °´¸ñÊ½Ìí¼Óµ¥Î»Óë¿Õ¸ñ£¡£¡£¡
-                sb.append(group);
-            }
-			unit /= 1000;
-        }
-        return sb.toString().trim(); // trim()È¥³ýÊ×Î»¿Õ¸ñ£¡£¡£¡
-    }
+	public String numberToWords(int num) {
+		if (num == 0) return "Zero";
+		return recursion(num);
+	}
 
-    public void recursion(StringBuilder sb, int num) {
-        if (num == 0) return; // µÝ¹é³ö¿Ú£¡£¡£¡
-        if (num < 10) {
-            sb.append(singles[num]).append(" "); // case1£º(0, 20)µÄÊý¿ÉÒÔÖ±½ÓµÃµ½ÆäÓ¢ÎÄ±íÊ¾£¡£¡£¡
-        } else if (num < 20) { 
-            sb.append(teens[num-10]).append(" ");
-        } else if (num < 100) { // case2£º[20, 100)µÄÊýÊ×ÏÈ½«Ê®Î»×ª»»³ÉÓ¢ÎÄ±íÊ¾£¬È»ºó¶Ô¸öÎ»µÝ¹éµØ×ª»»³ÉÓ¢ÎÄ±íÊ¾£¡£¡£¡
-            sb.append(tens[num/10]).append(" ");
-            recursion(sb, num%10);
-        } else { // case3£º[100,999]µÄÊýÊ×ÏÈ½«°ÙÎ»×ª»»³ÉÓ¢ÎÄ±íÊ¾£¬È»ºó¶ÔÆäÓà²¿·Ö£¨Ê®Î»ºÍ¸öÎ»£©µÝ¹éµØ×ª»»³ÉÓ¢ÎÄ±íÊ¾£¡£¡£¡
-            sb.append(singles[num/100]).append(" Hundred "); // ×¢Òâ°ÙÎ»µÄµ¥Î»ÔÚ´Ë´¦Ìí¼Ó£¡£¡£¡
-            recursion(sb, num%100);
-        }
-    }
+	String recursion(int num) {
+		String result = "";
+		if (num < 20) {
+			result = LESS_THAN_20[num];
+		} else if (num < 100) {
+			result = TENS[num/10] + " " + recursion(num%10);
+		} else if (num < 1000) {
+			result = recursion(num/100) + " Hundred " + recursion(num%100);
+		} else if (num < 1000000) {
+			result = recursion(num/1000) + " Thousand " + recursion(num%1000);
+		} else if (num < 1000000000) {
+			result = recursion(num/1000000) + " Million " + recursion(num%1000000);
+		} else {
+			result = recursion(num/1000000000) + " Billion " + recursion(num%1000000000);
+		}
+		return result.trim(); // trim()èƒ½åŽ»é™¤é¦–ä½ç©ºæ ¼ï¼ï¼
+	}
 }
