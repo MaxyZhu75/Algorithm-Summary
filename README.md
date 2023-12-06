@@ -19,4 +19,4 @@ COMPSCI611 Advanced Algorithm是我在UMass Amherst所修的计算机学院研�
 ## :calling: Contact
 Thank you so much for your interests. Note that this project can not straightforward be your course assignment solution. Do not download and submit my code without any change. Feel free to reach me out and I am happy to learn algorithms from you guys! ~
 * Email: maoqinzhu@umass.edu or zhumaxy@gmail.com
-* LinkedIn: [Max Zhu](https://www.linkedin.com/in/maoqin-zhu/)
+* LinkedIn: [Max Zhu](https://www.linkedin.com/in/maoqinzhu/)
